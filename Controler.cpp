@@ -23,7 +23,7 @@ void Controler::consultaInsumosDescricao(Locais loc)
 {
 
 }
-Insumo[] Controler::consultaInsumo(Locais loc, int tipoInsumo)
+Insumo Controler::consultaInsumo(Locais loc, int tipoInsumo)
 {
 
 }
