@@ -1,15 +1,15 @@
-all:Executar limpar
-Executar: main.o grafos.o dados.o
-    g++ -Wall -o Projeto2 main.o grafos.o dados.o
+all:run
 
-main.o:main.cpp grafos.cpp grafos.h dados.cpp dados.h
-    g++ -c main.cpp
+dep.o: src/Menu.cpp   # Define as dependências a serem compiladas
+	g++ -c src/Menu.cpp	
 
-grafos.o:grafos.cpp grafos.h
-    g++ -c grafos.cpp
+main: src/main.cpp dep.o
+	g++ -o main src/main.cpp *.o
 
-dados.o:dados.cpp dados.h
-    g++ -c dados.cpp
+run: main
+	rm *.o
+	clear
+	./main.exe
+	
 
-limpar:
-    rm -rf *.o
+.PHONY: all run	
