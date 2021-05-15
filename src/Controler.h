@@ -10,7 +10,7 @@ class Controler
 	Locais locais[28];
 		
 	public:
-		void cadastraInsumosMS();
+		void cadastraInsumosMS(Insumo *tipoInsumo);
 		void consultaInsumos(Locais loc);
 		void consultaInsumosDescricao(Locais loc);
 		Insumo consultaInsumo(Locais loc, int tipoInsumo); //Verificar o tipo ( array, vector ou list )

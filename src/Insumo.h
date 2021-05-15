@@ -14,7 +14,7 @@ class Insumo
 		int tipoInsumo;
 	
 	public:
-
+		
 		Insumo();
 		~Insumo();
 

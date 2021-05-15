@@ -1,6 +1,6 @@
 #include "Menu.h"  
 #include <iostream>	
-	
+#include "Controler.h"
 using namespace std;
 
 Menu::Menu(){
@@ -12,9 +12,7 @@ Menu::~Menu(){
 }
 
 void Menu::exibeMenu1(){
-    cout << "Oi meu lindo" << endl;
 }
 
 void Menu::exibeMenu2(){
-
 }	
