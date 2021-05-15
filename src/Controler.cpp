@@ -18,8 +18,9 @@ Controler::~Controler()
 }
 
 void Controler::cadastraInsumosMS(Insumo *insFilho)
-{
-    locais[0] = insFilho;
+{   
+    //No local MS, coloca no array de Insumos o insumo "insFilho"
+    locais[0].setInsumo(insFilho);
 }
 
 void Controler::consultaInsumos(Locais loc)

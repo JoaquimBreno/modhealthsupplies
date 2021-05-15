@@ -16,7 +16,7 @@ void Locais::setAtributos(std::string nome, int index)
     this->index = index;
 }
 
-void Locais::setInsumo(Insumo *ptr, int index)
+void Locais::setInsumo(Insumo *ptr)
 {
-    insumos[index] = ptr;
+    insumos.push_back(ptr);
 }

@@ -2,14 +2,15 @@
 #define LOCAIS_H
 #include <string>
 #include "Insumo.h"
+#include <vector>
 
 class Locais 
 {
 	private:
 		std::string nome;
 		int index;
-		Insumo *insumos[100];
-		
+		std::vector<Insumo*> insumos;
+
 	public:
 		void setAtributos(std::string nome, int index);
 		void setInsumo(Insumo *ptr);
