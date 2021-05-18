@@ -3,6 +3,10 @@
 
 #include <string>
 
+#define VACINA 1
+#define MEDICAMENTO 2
+#define EPI 3
+
 class Insumo  
 {
 	protected:
@@ -15,6 +19,7 @@ class Insumo
 	
 	public:
 		
+		int getTipoInsumo();
 		Insumo();
 		~Insumo();
 

@@ -1,4 +1,5 @@
 #include "Controler.h"  
+#include <iostream>
 using namespace std;
 
 Controler::Controler()
@@ -25,7 +26,12 @@ void Controler::cadastraInsumosMS(Insumo *insFilho)
 
 void Controler::consultaInsumos(Locais loc)
 {
+    if(loc.getInsumos().size() > 0){
 
+        for(int i=0; i<loc.getInsumos().size(); i++){
+            
+        }
+    }
 }
 void Controler::consultaInsumosDescricao(Locais loc)
 {

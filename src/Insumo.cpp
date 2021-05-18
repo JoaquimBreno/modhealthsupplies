@@ -9,3 +9,8 @@ Insumo::~Insumo()
 {
 	
 }
+
+int Insumo::getTipoInsumo()
+{
+    return tipoInsumo;
+}
