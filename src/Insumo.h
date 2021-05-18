@@ -12,7 +12,7 @@ class Insumo
 	protected:
 		std::string nome;
 		int quantidade;
-		float valorUnitario;
+		float valorUnit;
 		std::string dtVencimento;
 		std::string nomeFabricante;
 		int tipoInsumo;
@@ -22,7 +22,7 @@ class Insumo
 		int getTipoInsumo();
 		std::string getNome();
 		int getQuantidade();
-		float valorUnitario();
+		float getValorUnit();
 		std::string getDtVencimento();
 		std::string getNomeFabricante();
 	

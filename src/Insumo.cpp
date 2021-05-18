@@ -20,10 +20,10 @@ std::string Insumo::getNome(){
 
 int Insumo::getQuantidade(){
     return quantidade;
-
 }
-float Insumo::valorUnitario(){
-    return valorUnitario;
+
+float Insumo::getValorUnit(){
+    return valorUnit;
 }
 
 std::string Insumo::getDtVencimento(){
