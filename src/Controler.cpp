@@ -28,8 +28,10 @@ void Controler::consultaInsumos(Locais loc)
 {
     if(loc.getInsumos().size() > 0){
 
-        for(int i=0; i<loc.getInsumos().size(); i++){
-            
+        for(Insumo *ins : loc.getInsumos()){
+            if(ins->getTipoInsumo() == VACINA){
+                cout << ins
+            }
         }
     }
 }
