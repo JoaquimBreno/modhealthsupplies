@@ -7,7 +7,7 @@ class Epi : public Insumo
 {
 	private:
 	int tipo;
-	std::string string;
+	std::string descricao;
 
 	public:
 

@@ -1,4 +1,5 @@
 #include "Controler.h"  
+#include <iostream>
 using namespace std;
 
 Controler::Controler()
@@ -25,12 +26,75 @@ void Controler::cadastraInsumosMS(Insumo *insFilho)
 
 void Controler::consultaInsumos(Locais loc)
 {
+    //Verifica se no local passado existe algum insumo cadastrado
+    if(loc.getInsumos().size() > 0){
+        //Se sim, faça 3 fors percorrendo os insumos e printando nome do insumo e quantidade
+        //Na ordem vacina, medicamento e epi
+        
+        for(Insumo *ins : loc.getInsumos()){// For each insumo em locais
+            if(ins->getTipoInsumo() == VACINA){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
+                cout << "Vacina: ";
+                cout << ins->getNome() << endl << "Quantidade: "  << ins->getQuantidade() << endl << endl;
+            }
+        }
 
+        for(Insumo *ins : loc.getInsumos()){ 
+            if(ins->getTipoInsumo() == MEDICAMENTO){ 
+                cout << "Medicamento: ";
+                cout << ins->getNome() << endl << "Quantidade: "  << ins->getQuantidade() << endl << endl;
+            }
+        }
+
+        for(Insumo *ins : loc.getInsumos()){
+            if(ins->getTipoInsumo() == EPI){
+                cout << "EPI: ";
+                cout << ins->getNome() << endl << "Quantidade: "  << ins->getQuantidade() << endl << endl;
+            }
+        }
+    }
+    else{
+        cout << "Nao ha insumos nesse local..." << endl;
+    }
 }
+
+Locais Controler::getLocal(int index)
+{
+    return locais[index];
+}
+
 void Controler::consultaInsumosDescricao(Locais loc)
 {
+    /Verifica se no local passado existe algum insumo cadastrado
+    if(loc.getInsumos().size() > 0){
+        //Se sim, faça 3 fors percorrendo os insumos e printando nome do insumo e quantidade
+        //Na ordem vacina, medicamento e epi
+        
+        for(Insumo *ins : loc.getInsumos()){// For each insumo em locais
+            if(ins->getTipoInsumo() == VACINA){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
+                cout << "Vacina: ";
+                cout << ins->getNome() << endl << "Quantidade: "  << ins->getQuantidade() << endl << endl;
+            }
+        }
 
+        for(Insumo *ins : loc.getInsumos()){ 
+            if(ins->getTipoInsumo() == MEDICAMENTO){ 
+                cout << "Medicamento: ";
+                cout << ins->getNome() << endl << "Quantidade: "  << ins->getQuantidade() << endl << endl;
+            }
+        }
+
+        for(Insumo *ins : loc.getInsumos()){
+            if(ins->getTipoInsumo() == EPI){
+                cout << "EPI: ";
+                cout << ins->getNome() << endl << "Quantidade: "  << ins->getQuantidade() << endl << endl;
+            }
+        }
+    }
+    else{
+        cout << "Nao ha insumos nesse local..." << endl;
+    }
 }
+
 Insumo Controler::consultaInsumo(Locais loc, int tipoInsumo)
 {
 
@@ -39,4 +103,6 @@ void Controler::distribuiInsumo(Locais dest, Insumo insumo)
 {
 
 }
+
+
 

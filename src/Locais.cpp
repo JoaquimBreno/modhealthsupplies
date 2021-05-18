@@ -20,3 +20,8 @@ void Locais::setInsumo(Insumo *ptr)
 {
     insumos.push_back(ptr);
 }
+
+std::vector<Insumo*> Locais::getInsumos()
+{
+    return this->insumos;
+}

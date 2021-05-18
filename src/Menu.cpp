@@ -17,7 +17,7 @@ void Menu::exibeMenu1(){
     Vacina vac;
     
     
-    ct.cadastraInsumosMS(&vac);
+    ct.consultaInsumos(ct.getLocal(0));
 }
 
 void Menu::exibeMenu2(){
