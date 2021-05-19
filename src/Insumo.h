@@ -25,6 +25,7 @@ class Insumo
 		float getValorUnit();
 		std::string getDtVencimento();
 		std::string getNomeFabricante();
+		virtual std::string getDescricao();
 	
 		Insumo();
 		~Insumo();

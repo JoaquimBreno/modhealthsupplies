@@ -33,3 +33,7 @@ std::string Insumo::getDtVencimento(){
 std::string Insumo::getNomeFabricante(){
     return nomeFabricante;
 }
+
+std::string Insumo::getDescricao(){
+
+}

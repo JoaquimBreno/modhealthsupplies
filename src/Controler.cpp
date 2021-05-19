@@ -64,7 +64,7 @@ Locais Controler::getLocal(int index)
 
 void Controler::consultaInsumosDescricao(Locais loc)
 {
-    /Verifica se no local passado existe algum insumo cadastrado
+    //Verifica se no local passado existe algum insumo cadastrado
     if(loc.getInsumos().size() > 0){
         //Se sim, faça 3 fors percorrendo os insumos e printando nome do insumo e quantidade
         //Na ordem vacina, medicamento e epi

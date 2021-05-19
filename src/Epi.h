@@ -1,6 +1,6 @@
 #ifndef EPI_H
 #define EPI_H
-
+#include <iostream>
 #include "Insumo.h"
 
 class Epi : public Insumo 
@@ -10,7 +10,7 @@ class Epi : public Insumo
 	std::string descricao;
 
 	public:
-
+		std::string getDescrição();
 		Epi();
 		~Epi();
 
