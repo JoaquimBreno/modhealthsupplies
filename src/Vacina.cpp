@@ -8,7 +8,13 @@ Vacina::Vacina()
     tipoInsumo = 1;
     
 }
-	
+
+std::string Insumo::getDescricao(){
+    std::cout << "Nome: " << nome << "/n" << "Quantidade:" << quantidade << " unidades" << "/n" <<
+    "Valor Unitario: " << "R$ " << valorUnit << "/n" << "Data de Vencimento: " << dtVencimento << "/n" <<
+    "Nome do Fabricante: " << nomeFabricante << std::endl;
+}
+
 Vacina::~Vacina()
 {
 	
