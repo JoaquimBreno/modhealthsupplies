@@ -71,38 +71,47 @@ void Controler::consultaInsumosDescricao(Locais loc)
         
         for(Insumo *ins : loc.getInsumos()){// For each insumo em locais
             if(ins->getTipoInsumo() == VACINA){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
-                cout << "Vacina: ";
-                cout << ins->getNome() << endl << "Quantidade: "  << ins->getQuantidade() << endl << endl;
+                std::cout << "Vacina: " << endl;
+                ins->getDescricao();
+                
             }
+            delete ins;
         }
 
         for(Insumo *ins : loc.getInsumos()){ 
             if(ins->getTipoInsumo() == MEDICAMENTO){ 
-                cout << "Medicamento: ";
-                cout << ins->getNome() << endl << "Quantidade: "  << ins->getQuantidade() << endl << endl;
+                std::cout << "Medicamento: " << endl;
+                ins->getDescricao();
             }
+            delete ins;
         }
 
         for(Insumo *ins : loc.getInsumos()){
             if(ins->getTipoInsumo() == EPI){
-                cout << "EPI: ";
-                cout << ins->getNome() << endl << "Quantidade: "  << ins->getQuantidade() << endl << endl;
+                std::cout << "EPI: " << endl;
+                ins->getDescricao();
             }
-        }
+            delete ins;
+        }   
     }
     else{
         cout << "Nao ha insumos nesse local..." << endl;
     }
 }
 
-Insumo Controler::consultaInsumo(Locais loc, int tipoInsumo)
+Insumo Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 {
-
+    
 }
+
 void Controler::distribuiInsumo(Locais dest, Insumo insumo)
 {
 
 }
 
+void Controler::delecaoDeInsumo(Locais loc, Insumo insumo)
+{
+
+}
 
 

@@ -1,6 +1,6 @@
 #ifndef INSUMO_H
 #define INSUMO_H
-
+#include <iostream>
 #include <string>
 
 #define VACINA 1
@@ -12,7 +12,7 @@ class Insumo
 	protected:
 		std::string nome;
 		int quantidade;
-		float valorUnit;
+		double valorUnit;
 		std::string dtVencimento;
 		std::string nomeFabricante;
 		int tipoInsumo;
@@ -22,7 +22,7 @@ class Insumo
 		int getTipoInsumo();
 		std::string getNome();
 		int getQuantidade();
-		float getValorUnit();
+		double getValorUnit();
 		std::string getDtVencimento();
 		std::string getNomeFabricante();
 		virtual std::string getDescricao();

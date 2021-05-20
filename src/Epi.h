@@ -6,11 +6,12 @@
 class Epi : public Insumo 
 {
 	private:
-	int tipo;
+	std::string tipo;
 	std::string descricao;
 
 	public:
-		std::string getDescrição();
+		std::string getDescricao();
+		std::string getAtDescricao();
 		Epi();
 		~Epi();
 

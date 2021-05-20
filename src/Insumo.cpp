@@ -1,4 +1,6 @@
-#include "Insumo.h"  
+#include "Insumo.h" 
+#include <iostream>
+using namespace std;
 	
 Insumo::Insumo()
 {
@@ -22,7 +24,7 @@ int Insumo::getQuantidade(){
     return quantidade;
 }
 
-float Insumo::getValorUnit(){
+double Insumo::getValorUnit(){
     return valorUnit;
 }
 
@@ -35,5 +37,9 @@ std::string Insumo::getNomeFabricante(){
 }
 
 std::string Insumo::getDescricao(){
-
+    cout << "Nome: " << getNome() << endl;
+    cout <<	"Quantidade: " << getQuantidade() << endl;
+	cout <<	"Valor unitario: R$ " << getValorUnit() << endl;
+	cout << "Data de vencimento: " <<	getDtVencimento() << endl;
+	cout <<	"Fabricante: " << getNomeFabricante() << endl;
 }
