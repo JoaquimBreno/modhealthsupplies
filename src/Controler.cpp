@@ -1,5 +1,6 @@
 #include "Controler.h"  
 #include <iostream>
+#include <vector>
 using namespace std;
 
 Controler::Controler()
@@ -99,10 +100,16 @@ Insumo Controler::consultaInsumo(Locais loc, int tipoInsumo)
 {
 
 }
+
+void Controler::delecao(Locais loc, string nome){
+    for(Insumo *ins : loc.getInsumos()){// For each insumo em locais
+        if(ins->getNome() == nome){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
+            .erase(&ins);
+        }
+    }
+}
+
 void Controler::distribuiInsumo(Locais dest, Insumo insumo)
 {
 
 }
-
-
-
