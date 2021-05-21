@@ -1,5 +1,6 @@
 #include "Controler.h"  
 #include <iostream>
+#include <vector>
 using namespace std;
 
 Controler::Controler()
@@ -99,9 +100,21 @@ void Controler::consultaInsumosDescricao(Locais loc)
     }
 }
 
-Insumo Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
+vector<Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 {
+    cout << "ENTROU !" << endl;
+    vector<Insumo*> vec;
+    for(Insumo *ins : loc.getInsumos()){// For each insumo em locais
+        if(ins->getTipoInsumo() == tipoInsumo){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
+            vec.push_back(ins);
+        }
+        cout << "PASSOU!" << endl;
+        cout << vec[0] << endl;//printa o endereço de memoria
+        
+        delete ins;
+    }
     
+    return vec;
 }
 
 void Controler::distribuiInsumo(Locais dest, Insumo insumo)
