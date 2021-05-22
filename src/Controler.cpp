@@ -100,7 +100,7 @@ void Controler::consultaInsumosDescricao(Locais loc)
     }
 }
 
-vector<Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
+vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 {
     cout << "ENTROU !" << endl;
     vector<Insumo*> vec;
@@ -109,9 +109,10 @@ vector<Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
             vec.push_back(ins);
         }
         cout << "PASSOU!" << endl;
-        cout << vec[0] << endl;//printa o endereço de memoria
-        
-        delete ins;
+        ;//printa o endereço de memoria
+    }
+    for(unsigned int i = 0; i < vec.size(); i++){
+        vec[i]->getDescricao();
     }
     
     return vec;
