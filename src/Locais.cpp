@@ -26,6 +26,32 @@ std::vector<Insumo*> Locais::getInsumos()
     return this->insumos;
 }
 
-std::vector<Insumo*> Locais::deletaInsumos(){
-    insumos.erase(std::remove(insumos.begin(), insumos.end(), "map"), insumos.end());
+void Locais::deletaInsumos(int i){
+    std::cout << i << std::endl;
+    insumos.erase(insumos.begin()+(i+1));
+    for(int i = 0; i<)
+    //{
+    //int main ()
+    //std::vector<int> myvector;
+    //myvector.push_back (100);
+    //myvector.push_back (200);
+    //myvector.push_back (300);
+
+    //std::cout << "myvector contains:";
+    //for (unsigned i=0; i<myvector.size(); i++)
+    //    std::cout << ' ' << myvector[i];
+    //std::cout << '\n';
+
+    //myvector.clear();
+    //myvector.push_back (1101);
+    //myvector.push_back (2202);
+
+    //std::cout << "myvector contains:";
+    //for (unsigned i=0; i<myvector.size(); i++)
+    //    std::cout << ' ' << myvector[i];
+    //std::cout << '\n';
+
+    //return 0;
+    //}
+    //Editar e executar
 }

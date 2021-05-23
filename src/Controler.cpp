@@ -128,15 +128,15 @@ void Controler::delecaoDeInsumo(Locais loc)
     vector<Insumo*> vec = loc.getInsumos();
     for( unsigned int i = 0 ; i < vec.size(); i++){
         if(vec[i]->getQuantidade() == 0){//verifica se a quantidade de determinado insumo é 0
-            vec.erase(vec.begin()+(i+1));//deleta o insumo dentro do vetor vec
+            loc.deletaInsumos(i);//deleta o insumo dentro do vetor insumos
         }
     }
 
-    loc.deletaInsumos();//apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizados
+    ;//apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizados
 
-    for( unsigned int i = 0 ; i < vec.size(); i++){//adiciona os insumos dentro do vetor insumo, os insumos que estao dentro do vetor vec  
-        loc.setInsumo(vec[i]);
-    }
+    //for( unsigned int i = 0 ; i < vec.size(); i++){//adiciona os insumos dentro do vetor insumo, os insumos que estao dentro do vetor vec  
+    //    loc.setInsumo(vec[i]);
+    //}
     
 }
 
