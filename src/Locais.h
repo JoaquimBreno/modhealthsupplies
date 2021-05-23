@@ -3,6 +3,7 @@
 #include <string>
 #include "Insumo.h"
 #include <vector>
+#include <algorithm>
 
 class Locais 
 {
@@ -14,6 +15,7 @@ class Locais
 	public:
 		void setAtributos(std::string nome, int index);
 		void setInsumo(Insumo *ptr);
+		std::vector<Insumo*> deletaInsumos();
 		std::vector<Insumo*> getInsumos();
 		
 		Locais();

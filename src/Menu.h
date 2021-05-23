@@ -7,7 +7,7 @@ class Menu
 
 	public:
 		Menu();
-		~Menu();	
+		~Menu();
 		void exibeMenu1();
 		void exibeMenu2();
 
