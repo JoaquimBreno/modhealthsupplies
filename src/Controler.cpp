@@ -106,14 +106,13 @@ vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
     vector<Insumo*> vec;
     for(Insumo *ins : loc.getInsumos()){// For each insumo em locais
         if(ins->getTipoInsumo() == tipoInsumo){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
-            vec.push_back(ins);
+            vec.push_back(ins); // FAZER UMA EXCEPTION AQUI
         }
         cout << "PASSOU!" << endl;
-        ;//printa o endereço de memoria
     }
-    for(unsigned int i = 0; i < vec.size(); i++){
-        vec[i]->getDescricao();
-    }
+//    for(unsigned int i = 0; i < vec.size(); i++){
+//        vec[i]->getDescricao();
+//    }
     
     return vec;
 }
@@ -123,9 +122,22 @@ void Controler::distribuiInsumo(Locais dest, Insumo insumo)
 
 }
 
-void Controler::delecaoDeInsumo(Locais loc, Insumo insumo)
-{
+void Controler::delecaoDeInsumo(Locais loc)
+{   
+    
+    vector<Insumo*> vec = loc.getInsumos();
+    for( unsigned int i = 0 ; i < vec.size(); i++){
+        if(vec[i]->getQuantidade() == 0){//verifica se a quantidade de determinado insumo é 0
+            vec.erase(vec.begin()+(i+1));//deleta o insumo dentro do vetor vec
+        }
+    }
 
+    loc.deletaInsumos();//apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizados
+
+    for( unsigned int i = 0 ; i < vec.size(); i++){//adiciona os insumos dentro do vetor insumo, os insumos que estao dentro do vetor vec  
+        loc.setInsumo(vec[i]);
+    }
+    
 }
 
 
