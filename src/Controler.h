@@ -14,7 +14,7 @@ class Controler
 		void consultaInsumos(Locais loc);
 		void consultaInsumosDescricao(Locais loc);
 		std::vector<Insumo*> consultaInsumoPorTipo(Locais loc, int tipoInsumo); //Verificar o tipo ( array, vector ou list )
-		void distribuiInsumo(Locais dest, Insumo insumo);
+	//	void distribuiInsumo(Locais dest, Insumo insumo);
 		void delecaoDeInsumo(Locais loc);
 		Locais getLocal(int index);
 		

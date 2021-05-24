@@ -27,9 +27,13 @@ std::vector<Insumo*> Locais::getInsumos()
 }
 
 void Locais::deletaInsumos(int i){
+   // for(int x = 0; x<insumos.size(); x++){
+   //     insumos[i]->getDescricao();
+   // }
     std::cout << i << std::endl;
-    insumos.erase(insumos.begin()+(i+1));
-    for(int i = 0; i<insumos.size(); i++){
+    insumos.erase(insumos.begin()+(i));
+    for(int x = 0; x<insumos.size(); x++){
+        insumos[x]->getDescricao();
     }
     //{
     //int main ()

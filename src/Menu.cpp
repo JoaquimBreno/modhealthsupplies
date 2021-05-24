@@ -22,20 +22,23 @@ void Menu::exibeMenu1(){
     Insumo *med = new Medicamento();
     Insumo *epi = new Epi();
     
-    ct.cadastraInsumosMS(vac);
-    ct.cadastraInsumosMS(med);
+    //ct.cadastraInsumosMS(vac);
+    //ct.cadastraInsumosMS(med);
     ct.cadastraInsumosMS(epi);
 
-//   int tipo;
-//    vector<Insumo*> teste;
-//    cin >> tipo;
-//    cin.ignore(); 
-//    teste = ct.consultaInsumoPorTipo(ct.getLocal(0), tipo);
-//    for( int i = 0 ; i < teste.size(); i++){
-//        teste[i]->getDescricao();
-//    }
-      ct.delecaoDeInsumo(ct.getLocal(0));
-      ct.consultaInsumos(ct.getLocal(0));
+   int tipo;
+    
+    //cin >> tipo;
+    //cin.ignore(); 
+    
+    //vector<Insumo*> teste;
+    //teste = ct.consultaInsumoPorTipo(ct.getLocal(0), tipo);
+
+    //for( int i = 0 ; i < teste.size(); i++){
+    //    teste[i]->getDescricao();
+    //}
+    ct.delecaoDeInsumo(ct.getLocal(0));
+    ct.consultaInsumos(ct.getLocal(0));
 
 }
 

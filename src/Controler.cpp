@@ -110,23 +110,24 @@ vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
         }
         cout << "PASSOU!" << endl;
     }
-//    for(unsigned int i = 0; i < vec.size(); i++){
-//        vec[i]->getDescricao();
-//    }
+
+    //for(unsigned int i = 0; i < vec.size(); i++){
+    //    vec[i]->getDescricao();
+    //}
     
     return vec;
 }
 
-void Controler::distribuiInsumo(Locais dest, Insumo insumo)
-{
+//void Controler::distribuiInsumo(Locais dest, Insumo insumo)
+//{
 
-}
+//}
 
 void Controler::delecaoDeInsumo(Locais loc)
 {   
     
     vector<Insumo*> vec = loc.getInsumos();
-    for( unsigned int i = 0 ; i < vec.size(); i++){
+    for( int i = 0 ; i < vec.size(); i++){
         if(vec[i]->getQuantidade() == 0){//verifica se a quantidade de determinado insumo é 0
             loc.deletaInsumos(i);//deleta o insumo dentro do vetor insumos
         }
