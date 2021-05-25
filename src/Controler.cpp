@@ -116,6 +116,9 @@ vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 }
 
 
+void Controler::distribuiInsumo(Locais dest, Insumo insumo)
+{
+
 
 void Controler::delecaoDeInsumo(Locais loc)
 {   
@@ -134,4 +137,7 @@ void Controler::delecaoDeInsumo(Locais loc)
     
 }
 
+
+
+}
 
