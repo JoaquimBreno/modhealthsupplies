@@ -106,6 +106,18 @@ Insumo Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 
 void Controler::distribuiInsumo(Locais dest, Insumo *insumo, int quantidade)
 {
+    //Verificando se há insumos suficientes:
+    for(Insumo *ins : locais[0].getInsumos()){              //Percorre o vector de insumos do MS
+
+        //Se achar o insumo que estamos distribuindo, faça:
+        if(ins == insumo){
+            if(ins->getQuantidade() < quantidade){
+                std::cout << "Nao ha insumos suficientes no estoque MS." << std::endl; 
+            }  
+        }
+
+    }
+
     dest.setInsumo(insumo);                                 //Coloca o insumo no destino
     dest.getInsumos().back()->setQuantidade(quantidade);    //Muda a quantidade do insumo no destino para a quant que queremos mandar
 
@@ -113,7 +125,7 @@ void Controler::distribuiInsumo(Locais dest, Insumo *insumo, int quantidade)
 
     for(Insumo *ins : locais[0].getInsumos()){              //Percorre o vector de insumos do MS
 
-        //Se achar um insumo igual ao que estamos distribuindo, faça:
+        //Se achar o insumo que estamos distribuindo, faça:
         if(ins == insumo){
             ins->setQuantidade(ins->getQuantidade() - quantidade);  //Muda a qunatidade para a que existia menos a que foi distribuída
         }
