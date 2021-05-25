@@ -9,7 +9,7 @@ class Vacina  : public Insumo{
 		int quantDoses;
 		int intervalo;	
 	public:
-		std::string getDescricao();
+		void getDescricao();
 		Vacina();
 		~Vacina();
 

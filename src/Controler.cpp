@@ -64,19 +64,17 @@ Locais Controler::getLocal(int index)
 }
 
 void Controler::consultaInsumosDescricao(Locais loc)
-{
+{   
     //Verifica se no local passado existe algum insumo cadastrado
     if(loc.getInsumos().size() > 0){
-        //Se sim, faça 3 fors percorrendo os insumos e printando nome do insumo e quantidade
+        //Se sim, faça 3 fors percorrendo os insumos
         //Na ordem vacina, medicamento e epi
-        
-        for(Insumo *ins : loc.getInsumos()){// For each insumo em locais
+
+        for(Insumo *ins : loc.getInsumos()){// For each insumo em insumos
             if(ins->getTipoInsumo() == VACINA){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
                 std::cout << "Vacina: " << endl;
                 ins->getDescricao();
-                
             }
-            delete ins;
         }
 
         for(Insumo *ins : loc.getInsumos()){ 
@@ -84,7 +82,6 @@ void Controler::consultaInsumosDescricao(Locais loc)
                 std::cout << "Medicamento: " << endl;
                 ins->getDescricao();
             }
-            delete ins;
         }
 
         for(Insumo *ins : loc.getInsumos()){
@@ -92,7 +89,6 @@ void Controler::consultaInsumosDescricao(Locais loc)
                 std::cout << "EPI: " << endl;
                 ins->getDescricao();
             }
-            delete ins;
         }   
     }
     else{
@@ -116,24 +112,23 @@ vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
     //}
     
     return vec;
+    
 }
 
-//void Controler::distribuiInsumo(Locais dest, Insumo insumo)
-//{
 
-//}
 
 void Controler::delecaoDeInsumo(Locais loc)
 {   
     
     vector<Insumo*> vec = loc.getInsumos();
     for( int i = 0 ; i < vec.size(); i++){
-        if(vec[i]->getQuantidade() == 0){//verifica se a quantidade de determinado insumo é 0
+        if(vec[i]->getQuantidade() <= 0){//verifica se a quantidade de determinado insumo é 0
             loc.deletaInsumos(i);//deleta o insumo dentro do vetor insumos
+            std::cout << "entrou aqui" << std::endl;
         }
     }
 
-    ;//apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizados
+    //apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizados
 
     //for( unsigned int i = 0 ; i < vec.size(); i++){//adiciona os insumos dentro do vetor insumo, os insumos que estao dentro do vetor vec  
     //    loc.setInsumo(vec[i]);

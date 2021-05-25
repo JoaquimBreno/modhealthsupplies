@@ -5,7 +5,7 @@ Medicamento::Medicamento()
 {
     nome = "Juliette";
     quantidade = 1000000;
-    valorUnit = 1500000;
+    valorUnit = 150;
     dtVencimento = "21/12/2080";
     nomeFabricante = "Mae dela";
     tipoInsumo = MEDICAMENTO;
@@ -19,7 +19,7 @@ Medicamento::~Medicamento()
 	
 }
 
-std::string Medicamento::getDescricao()
+void Medicamento::getDescricao()
 {
     Insumo::getDescricao();
     cout << "Dosagem: " << dosagem << endl;

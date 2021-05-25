@@ -6,7 +6,7 @@ Vacina::Vacina()
 	nome = "Lepo Lepo";
     quantidade = 10;
     quantDoses = 10;
-    tipoInsumo = 1;
+    tipoInsumo = VACINA;
     valorUnit = 21;
     dtVencimento = "12/12/2012";
     nomeFabricante= "Rastafari";
@@ -14,7 +14,7 @@ Vacina::Vacina()
     intervalo = 15;
 }
 
-std::string Vacina::getDescricao() 
+void Vacina::getDescricao() 
 {
     Insumo::getDescricao();
     cout << "Quantidade de doses: " << quantDoses << endl;

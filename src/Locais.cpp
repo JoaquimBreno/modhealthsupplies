@@ -23,40 +23,14 @@ void Locais::setInsumo(Insumo *ptr)
 //print
 std::vector<Insumo*> Locais::getInsumos()
 {
-    return this->insumos;
+    return insumos;
 }
 
 void Locais::deletaInsumos(int i){
-   // for(int x = 0; x<insumos.size(); x++){
-   //     insumos[i]->getDescricao();
-   // }
-    std::cout << i << std::endl;
-    insumos.erase(insumos.begin()+(i));
+
+    insumos.erase(insumos.begin()+(i+1));
     for(int x = 0; x<insumos.size(); x++){
         insumos[x]->getDescricao();
     }
-    //{
-    //int main ()
-    //std::vector<int> myvector;
-    //myvector.push_back (100);
-    //myvector.push_back (200);
-    //myvector.push_back (300);
 
-    //std::cout << "myvector contains:";
-    //for (unsigned i=0; i<myvector.size(); i++)
-    //    std::cout << ' ' << myvector[i];
-    //std::cout << '\n';
-
-    //myvector.clear();
-    //myvector.push_back (1101);
-    //myvector.push_back (2202);
-
-    //std::cout << "myvector contains:";
-    //for (unsigned i=0; i<myvector.size(); i++)
-    //    std::cout << ' ' << myvector[i];
-    //std::cout << '\n';
-
-    //return 0;
-    //}
-    //Editar e executar
 }

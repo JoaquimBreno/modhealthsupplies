@@ -36,7 +36,7 @@ std::string Insumo::getNomeFabricante(){
     return nomeFabricante;
 }
 
-std::string Insumo::getDescricao(){
+void Insumo::getDescricao(){
     cout << "Nome: " << getNome() << endl;
     cout <<	"Quantidade: " << getQuantidade() << endl;
 	cout <<	"Valor unitario: R$ " << getValorUnit() << endl;
