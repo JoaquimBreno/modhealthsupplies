@@ -14,7 +14,7 @@ class Controler
 		void consultaInsumos(Locais loc);
 		void consultaInsumosDescricao(Locais loc);
 		Insumo consultaInsumoPorTipo(Locais loc, int tipoInsumo); //Verificar o tipo ( array, vector ou list )
-		void distribuiInsumo(Locais dest, Insumo insumo);
+		void distribuiInsumo(Locais dest, Insumo *insumo, int quantidade);
 		void delecaoDeInsumo(Locais loc, Insumo insumo);
 		Locais getLocal(int index);
 		
