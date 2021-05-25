@@ -20,8 +20,16 @@ void Locais::setInsumo(Insumo *ptr)
 {
     insumos.push_back(ptr);
 }
-
+//print
 std::vector<Insumo*> Locais::getInsumos()
 {
-    return this->insumos;
+    return insumos;
+}
+
+void Locais::deletaInsumos(int i){
+    insumos.erase(insumos.begin()+(i));
+    this->insumos=insumos;
+    // for(int x = 0; x<insumos.size(); x++){
+    //     insumos[x]->getDescricao();
+    // }
 }

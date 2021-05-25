@@ -9,7 +9,7 @@ class Medicamento  : public Insumo
 		std::string administracao;
 		std::string disponibilizacao;
 	public:
-		std::string getDescrição();
+		void getDescricao();
 		Medicamento();
 		~Medicamento();
 

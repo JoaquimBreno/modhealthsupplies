@@ -64,52 +64,80 @@ Locais Controler::getLocal(int index)
 }
 
 void Controler::consultaInsumosDescricao(Locais loc)
-{
+{   
     //Verifica se no local passado existe algum insumo cadastrado
     if(loc.getInsumos().size() > 0){
-        //Se sim, faça 3 fors percorrendo os insumos e printando nome do insumo e quantidade
+        //Se sim, faça 3 fors percorrendo os insumos
         //Na ordem vacina, medicamento e epi
-        
-        for(Insumo *ins : loc.getInsumos()){// For each insumo em locais
+
+        for(Insumo *ins : loc.getInsumos()){// For each insumo em insumos
             if(ins->getTipoInsumo() == VACINA){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
-                cout << "Vacina: ";
-                cout << ins->getNome() << endl << "Quantidade: "  << ins->getQuantidade() << endl << endl;
+                std::cout << "Vacina: " << endl;
+                ins->getDescricao();
             }
         }
 
         for(Insumo *ins : loc.getInsumos()){ 
             if(ins->getTipoInsumo() == MEDICAMENTO){ 
-                cout << "Medicamento: ";
-                cout << ins->getNome() << endl << "Quantidade: "  << ins->getQuantidade() << endl << endl;
+                std::cout << "Medicamento: " << endl;
+                ins->getDescricao();
             }
         }
 
         for(Insumo *ins : loc.getInsumos()){
             if(ins->getTipoInsumo() == EPI){
-                cout << "EPI: ";
-                cout << ins->getNome() << endl << "Quantidade: "  << ins->getQuantidade() << endl << endl;
+                std::cout << "EPI: " << endl;
+                ins->getDescricao();
             }
-        }
+        }   
     }
     else{
         cout << "Nao ha insumos nesse local..." << endl;
     }
 }
 
-Insumo Controler::consultaInsumo(Locais loc, int tipoInsumo)
+vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 {
-
-}
-
-void Controler::delecao(Locais loc, string nome){
+    cout << "ENTROU !" << endl;
+    vector<Insumo*> vec;
     for(Insumo *ins : loc.getInsumos()){// For each insumo em locais
-        if(ins->getNome() == nome){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
-            .erase(&ins);
+        if(ins->getTipoInsumo() == tipoInsumo){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
+            vec.push_back(ins); // FAZER UMA EXCEPTION AQUI
         }
+        cout << "PASSOU!" << endl;
     }
+
+    //for(unsigned int i = 0; i < vec.size(); i++){
+    //    vec[i]->getDescricao();
+    //}
+    
+    return vec;
+    
 }
+
 
 void Controler::distribuiInsumo(Locais dest, Insumo insumo)
 {
 
+
+void Controler::delecaoDeInsumo(Locais loc)
+{   
+    
+    for( int i=0; i<loc.getInsumos().size(); i++ ){
+        if(loc.getInsumos()[i]->getQuantidade() <= 0){//verifica se a quantidade de determinado insumo é 0
+            loc.deletaInsumos(i);//deleta o insumo dentro do vetor insumos
+            std::cout << "entrou aqui" << std::endl;
+        }
+    }
+    //apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizados
+
+    //for( unsigned int i = 0 ; i < vec.size(); i++){//adiciona os insumos dentro do vetor insumo, os insumos que estao dentro do vetor vec  
+    //    loc.setInsumo(vec[i]);
+    //}
+    
 }
+
+
+
+}
+
