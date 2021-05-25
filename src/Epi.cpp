@@ -5,7 +5,7 @@ using namespace std;
 Epi::Epi()
 {
     nome = "Cleitinho";
-    quantidade =  10;
+    quantidade =  0;
 	valorUnit = 90.5;
 	dtVencimento = "15/10/2001";
 	nomeFabricante = "Joca Cornelio";

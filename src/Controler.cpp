@@ -120,14 +120,12 @@ vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 void Controler::delecaoDeInsumo(Locais loc)
 {   
     
-    vector<Insumo*> vec = loc.getInsumos();
-    for( int i = 0 ; i < vec.size(); i++){
-        if(vec[i]->getQuantidade() <= 0){//verifica se a quantidade de determinado insumo é 0
+    for( int i=0; i<loc.getInsumos().size(); i++ ){
+        if(loc.getInsumos()[i]->getQuantidade() <= 0){//verifica se a quantidade de determinado insumo é 0
             loc.deletaInsumos(i);//deleta o insumo dentro do vetor insumos
             std::cout << "entrou aqui" << std::endl;
         }
     }
-
     //apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizados
 
     //for( unsigned int i = 0 ; i < vec.size(); i++){//adiciona os insumos dentro do vetor insumo, os insumos que estao dentro do vetor vec  

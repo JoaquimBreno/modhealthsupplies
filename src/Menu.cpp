@@ -36,8 +36,8 @@ void Menu::exibeMenu1(){
     // for( int i = 0 ; i < teste.size(); i++){
     //    teste[i]->getDescricao();
     // }
-    //ct.delecaoDeInsumo(ct.getLocal(0));
-    //ct.consultaInsumosDescricao(ct.getLocal(0));
+    ct.delecaoDeInsumo(ct.getLocal(0));
+    ct.consultaInsumosDescricao(ct.getLocal(0));
 
 }
 
