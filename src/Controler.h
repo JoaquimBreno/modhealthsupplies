@@ -1,6 +1,6 @@
 #ifndef CONTROLER_H
 #define CONTROLER_H
-
+#include <vector>
 #include "Locais.h"
 #include "Insumo.h"
 
@@ -13,9 +13,10 @@ class Controler
 		void cadastraInsumosMS(Insumo *insFilho);
 		void consultaInsumos(Locais loc);
 		void consultaInsumosDescricao(Locais loc);
-		Insumo consultaInsumoPorTipo(Locais loc, int tipoInsumo); //Verificar o tipo ( array, vector ou list )
+
+		std::vector<Insumo*> consultaInsumoPorTipo(Locais loc, int tipoInsumo); //Verificar o tipo ( array, vector ou list )
+		void delecaoDeInsumo(Locais loc);
 		void distribuiInsumo(Locais dest, Insumo *insumo, int quantidade);
-		void delecaoDeInsumo(Locais loc, Insumo insumo);
 		Locais getLocal(int index);
 		
 		Controler();

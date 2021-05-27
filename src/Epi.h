@@ -10,8 +10,7 @@ class Epi : public Insumo
 	std::string descricao;
 
 	public:
-		std::string getDescricao();
-		std::string getAtDescricao();
+		void getDescricao();
 		Epi();
 		~Epi();
 
