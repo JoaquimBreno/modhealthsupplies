@@ -26,6 +26,7 @@ class Insumo
 		std::string getDtVencimento();
 		std::string getNomeFabricante();
 		virtual void getDescricao();
+		virtual void setQuantidade(int quant);
 	
 		Insumo();
 		~Insumo();

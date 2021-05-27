@@ -43,3 +43,8 @@ void Insumo::getDescricao(){
 	cout << "Data de vencimento: " <<	getDtVencimento() << endl;
 	cout <<	"Fabricante: " << getNomeFabricante() << endl;
 }
+
+void Insumo::setQuantidade(int quant)
+{
+    this->quantidade = quant;
+}
