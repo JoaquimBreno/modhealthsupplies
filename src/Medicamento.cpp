@@ -4,7 +4,7 @@ using namespace std;
 Medicamento::Medicamento()
 {
     nome = "Juliette";
-    quantidade = 52;
+    quantidade = 0;
     valorUnit = 150;
     dtVencimento = "21/12/2080";
     nomeFabricante = "Mae dela";

@@ -19,17 +19,16 @@ class Insumo
 	
 	public:
 		
-		int getTipoInsumo();
-		std::string getNome();
-		int getQuantidade();
-		double getValorUnit();
-		std::string getDtVencimento();
-		std::string getNomeFabricante();
+		virtual int getTipoInsumo();
+		virtual std::string getNome();
+		virtual int getQuantidade();
+		virtual double getValorUnit();
+		virtual std::string getDtVencimento();
+		virtual std::string getNomeFabricante();
 		virtual void getDescricao();
 		virtual void setQuantidade(int quant);
 	
 		Insumo();
 		~Insumo();
-
 };
 #endif

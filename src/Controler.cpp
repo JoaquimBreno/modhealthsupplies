@@ -69,24 +69,24 @@ void Controler::consultaInsumosDescricao(Locais loc)
     if(loc.getInsumos().size() > 0){
         //Se sim, faça 3 fors percorrendo os insumos
         //Na ordem vacina, medicamento e epi
-
+        
         for(Insumo *ins : loc.getInsumos()){// For each insumo em insumos
             if(ins->getTipoInsumo() == VACINA){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
-                std::cout << "Vacina: " << endl;
+                std::cout << "Vacina: " << endl << endl;
                 ins->getDescricao();
             }
         }
 
         for(Insumo *ins : loc.getInsumos()){ 
             if(ins->getTipoInsumo() == MEDICAMENTO){ 
-                std::cout << "Medicamento: " << endl;
+                std::cout << "Medicamento: " <<endl << endl;
                 ins->getDescricao();
             }
         }
 
         for(Insumo *ins : loc.getInsumos()){
             if(ins->getTipoInsumo() == EPI){
-                std::cout << "EPI: " << endl;
+                std::cout << "EPI: " << endl << endl;
                 ins->getDescricao();
             }
         }   
@@ -147,22 +147,15 @@ void Controler::distribuiInsumo(Locais dest, Insumo *insumo, int quantidade){
 
 void Controler::delecaoDeInsumo(Locais loc)
 {   
-    
-    for( int i=0; i<loc.getInsumos().size(); i++ ){
-        if(loc.getInsumos()[i]->getQuantidade() <= 0){//verifica se a quantidade de determinado insumo é 0
-            loc.deletaInsumos(i);//deleta o insumo dentro do vetor insumos
-            std::cout << "entrou aqui" << std::endl;
+    int tamanho = loc.getInsumos().size();
+    int c = 0;
+    for( int i=0; i<tamanho; i++ ){    /// quando i = 0, o index é 0-0 / quando o i=1, o index é 1-1 / quando o i=2, o index é 2-2
+        if(loc.getInsumos()[i-c]->getQuantidade() == 0){//verifica se a quantidade de determinado insumo é 0
+            loc.deletaInsumos(i-c);//deleta o insumo dentro do vetor insumos
+            c++;
         }
     }
-    //apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizados
-
-    //for( unsigned int i = 0 ; i < vec.size(); i++){//adiciona os insumos dentro do vetor insumo, os insumos que estao dentro do vetor vec  
-    //    loc.setInsumo(vec[i]);
-    //}
+    //apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizado
+    
     
 }
-
-
-
-}
-

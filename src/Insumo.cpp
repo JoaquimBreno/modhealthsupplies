@@ -6,11 +6,12 @@ Insumo::Insumo()
 {
 	
 }
-	
+
 Insumo::~Insumo()
 {
-	
+   
 }
+
 
 int Insumo::getTipoInsumo()
 {
