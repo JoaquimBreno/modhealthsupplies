@@ -116,32 +116,46 @@ vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 }
 
 
-void Controler::distribuiInsumo(Locais dest, Insumo *insumo, int quantidade){
+void Controler::distribuiInsumo(Locais dest, Insumo *insumo, long quantidade){
+    
+    Insumo *copia;
+
     //Verificando se há insumos suficientes:
+
     for(Insumo *ins : locais[0].getInsumos()){              //Percorre o vector de insumos do MS
 
         //Se achar o insumo que estamos distribuindo, faça:
         if(ins == insumo){
             if(ins->getQuantidade() < quantidade){
                 std::cout << "Nao ha insumos suficientes no estoque MS." << std::endl; 
-            }  
+            }
         }
-
     }
 
-    dest.setInsumo(insumo);                                 //Coloca o insumo no destino
-    dest.getInsumos().back()->setQuantidade(quantidade);    //Muda a quantidade do insumo no destino para a quant que queremos mandar
+    if(insumo->getTipoInsumo() == VACINA){
+        copia = new Vacina();
+    }
 
+    //copia.recebeAtributos();
+
+    dest.setInsumo(copia);                                        //Coloca o insumo no destino
+    dest.getInsumos().back()->setQuantidade(quantidade);          //Muda a quantidade do insumo no destino para a quant que queremos mandar
+    cout << locais[0].getInsumos()[0]->getQuantidade() << endl;
+    
     //Agora vamos subtrair o insumo mandado lá do MS
 
     for(Insumo *ins : locais[0].getInsumos()){              //Percorre o vector de insumos do MS
 
         //Se achar o insumo que estamos distribuindo, faça:
         if(ins == insumo){
+            long quantidadeMS = ins->getQuantidade();
             ins->setQuantidade(ins->getQuantidade() - quantidade);  //Muda a qunatidade para a que existia menos a que foi distribuída
         }
 
     }
+
+    locais[0].getInsumos()[0]->getDescricao();
+
 }
 
 
@@ -155,7 +169,7 @@ void Controler::delecaoDeInsumo(Locais loc)
             c++;
         }
     }
-    //apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizado
+//     //apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizado
     
     
 }

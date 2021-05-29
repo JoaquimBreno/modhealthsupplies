@@ -3,6 +3,9 @@
 #include <vector>
 #include "Locais.h"
 #include "Insumo.h"
+#include "Vacina.h"
+#include "Medicamento.h"
+#include "EPI.h"
 
 class Controler  
 {
@@ -16,7 +19,7 @@ class Controler
 
 		std::vector<Insumo*> consultaInsumoPorTipo(Locais loc, int tipoInsumo); //Verificar o tipo ( array, vector ou list )
 		void delecaoDeInsumo(Locais loc);
-		void distribuiInsumo(Locais dest, Insumo *insumo, int quantidade);
+		void distribuiInsumo(Locais dest, Insumo *insumo, long quantidade);
 		Locais getLocal(int index);
 		
 		Controler();

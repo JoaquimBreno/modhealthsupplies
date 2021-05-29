@@ -18,6 +18,7 @@ class Locais
 		void deletaInsumos(int i);
 		std::vector<Insumo*> getInsumos();
 		
+		
 		Locais();
 		~Locais();
 

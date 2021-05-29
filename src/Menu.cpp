@@ -25,21 +25,12 @@ void Menu::exibeMenu1(){
     ct.cadastraInsumosMS(vac);
     ct.cadastraInsumosMS(med);
     ct.cadastraInsumosMS(epi);
-    // int tipo;
-    
-    // cin >> tipo;
-    // cin.ignore(); 
-    
-    // vector<Insumo*> teste;
-    // teste = ct.consultaInsumoPorTipo(ct.getLocal(0), tipo);
 
-    // for( int i = 0 ; i < teste.size(); i++){
-    //    teste[i]->getDescricao();
-    // }
+    ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[0], 500);
 
-    ct.delecaoDeInsumo(ct.getLocal(0));
-
+    cout << "Distribuicao realizada" << endl << endl;
     ct.consultaInsumosDescricao(ct.getLocal(0));
+    ct.consultaInsumosDescricao(ct.getLocal(1));
 
 }
 

@@ -11,7 +11,7 @@ class Insumo
 {
 	protected:
 		std::string nome;
-		int quantidade;
+		long quantidade;
 		double valorUnit;
 		std::string dtVencimento;
 		std::string nomeFabricante;
