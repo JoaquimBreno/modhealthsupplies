@@ -11,6 +11,10 @@ class Epi : public Insumo
 
 	public:
 		void getDescricao();
+		std::string getTipo();
+		std::string getAtDescricao();
+		void setTipo(std::string tipo);
+		void setAtDescricao(std::string desc);
 		Epi();
 		~Epi();
 

@@ -26,3 +26,23 @@ void Epi::getDescricao()
     cout << "Descricao: " << descricao << endl;
     cout << "--------------------------------------" << endl << endl;
 }
+
+std::string Epi::getTipo()
+{
+    return tipo;
+}
+
+std::string Epi::getAtDescricao()
+{
+    return descricao;
+}
+
+void Epi::setTipo(std::string tipo)
+{
+    this->tipo = tipo;
+}   
+
+void Epi::setAtDescricao(std::string desc)
+{
+    this->descricao = desc;
+}

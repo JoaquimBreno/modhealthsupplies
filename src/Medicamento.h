@@ -10,6 +10,13 @@ class Medicamento  : public Insumo
 		std::string disponibilizacao;
 	public:
 		void getDescricao();
+		std::string getDosagem();
+		std::string getAdministracao();
+		std::string getDisponibilizacao();
+		void setDosagem(std::string dosagem);
+		void setAdministracao(std::string administracao);
+		void setDisponibilizacao(std::string disp);
+
 		Medicamento();
 		~Medicamento();
 

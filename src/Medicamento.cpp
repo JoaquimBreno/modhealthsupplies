@@ -27,3 +27,34 @@ void Medicamento::getDescricao()
     cout << "Disponibilizacao: " << disponibilizacao << endl;
     cout << "--------------------------------------" << endl << endl;
 }
+
+std::string Medicamento::getDosagem()
+{
+    return dosagem;
+}
+
+std::string Medicamento::getAdministracao()
+{
+    return administracao;
+}
+
+std::string Medicamento::getDisponibilizacao()
+{
+    return disponibilizacao;
+}
+
+void Medicamento::setDosagem(std::string dosagem)
+{
+    this->dosagem = dosagem;
+}
+
+void Medicamento::setAdministracao(std::string administracao)
+{
+    this->administracao = administracao;
+}
+
+
+void Medicamento::setDisponibilizacao(std::string disp)
+{
+    this->disponibilizacao = disp;
+}

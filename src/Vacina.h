@@ -10,6 +10,12 @@ class Vacina  : public Insumo{
 		int intervalo;	
 	public:
 		void getDescricao();
+		std::string getTipoVac();
+		int getQuantDoses();
+		int getIntervalo();
+		void setTipoVac(std::string tVac);
+		void setQuantDoses(int quant);
+		void setIntervalo(int intervalo);
 		Vacina();
 		~Vacina();
 

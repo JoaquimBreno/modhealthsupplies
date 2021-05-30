@@ -27,6 +27,11 @@ class Insumo
 		virtual std::string getNomeFabricante();
 		virtual void getDescricao();
 		virtual void setQuantidade(int quant);
+		virtual void setNome(std::string n);
+		virtual void setValorUnit(double valor);
+		virtual void setDtVencimento(std::string dt);
+		virtual void setNomeFabricante(std::string nomeFabri);
+		virtual void setTipoInsumo(int tipo);
 	
 		Insumo();
 		~Insumo();

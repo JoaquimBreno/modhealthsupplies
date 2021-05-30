@@ -49,3 +49,28 @@ void Insumo::setQuantidade(int quant)
 {
     this->quantidade = quant;
 }
+
+void Insumo::setNome(std::string n)
+{
+    this->nome = n;
+}
+
+void Insumo::setValorUnit(double valor)
+{
+    this->valorUnit = valor;
+}
+
+void Insumo::setDtVencimento(std::string dt)
+{
+    this->dtVencimento = dt;
+}
+
+void Insumo::setNomeFabricante(std::string nomeFabri)
+{
+    this->nomeFabricante = nomeFabri;
+}
+
+void Insumo::setTipoInsumo(int tipo)
+{
+    this->tipoInsumo = tipo;
+}

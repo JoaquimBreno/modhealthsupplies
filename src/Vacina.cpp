@@ -28,3 +28,33 @@ Vacina::~Vacina()
 {
 	
 }
+
+std::string Vacina::getTipoVac()
+{
+    return tipoVac;
+}
+
+int Vacina::getQuantDoses()
+{
+    return quantDoses;
+}
+
+int Vacina::getIntervalo()
+{
+    return intervalo;
+}
+
+void Vacina::setTipoVac(std::string tVac)
+{
+    this->tipoVac = tVac;
+}
+
+void Vacina::setQuantDoses(int quant)
+{
+    this->quantDoses = quant;
+}
+
+void Vacina::setIntervalo(int intervalo)
+{
+    this->intervalo = intervalo;
+}
