@@ -13,6 +13,18 @@ Epi::Epi()
 	tipo = "Mascara P95";
 	descricao = "Tudo de bom para vc , querido cliente amigo";
 }
+
+Epi::Epi(Insumo *epi, std::string tipo, std::string descricao)
+{
+    this->nome = epi->getNome();
+    this->quantidade = epi->getQuantidade();
+    this->tipoInsumo = epi->getTipoInsumo();
+    this->valorUnit = epi->getValorUnit();
+    this->dtVencimento = epi->getDtVencimento();
+    this->nomeFabricante= epi->getNomeFabricante();
+    this->tipo = tipo;
+    this->descricao = descricao;
+}
 	
 Epi::~Epi()
 {

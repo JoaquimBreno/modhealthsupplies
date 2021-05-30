@@ -21,7 +21,9 @@ class Controler
 		void delecaoDeInsumo(Locais loc);
 		void distribuiInsumo(Locais dest, Insumo *insumo, long quantidade);
 		Locais getLocal(int index);
-		void copiaAtributos(Insumo *insumo);
+		Insumo* copiaVacina(Vacina *insumo);
+		Insumo* copiaMedicamento(Medicamento *insumo);
+		Insumo* copiaEpi(Epi *insumo);
 		
 		Controler();
 		~Controler();

@@ -16,7 +16,7 @@ class Medicamento  : public Insumo
 		void setDosagem(std::string dosagem);
 		void setAdministracao(std::string administracao);
 		void setDisponibilizacao(std::string disp);
-
+		Medicamento(Insumo *med, std::string dos, std::string adm, std::string disp);
 		Medicamento();
 		~Medicamento();
 

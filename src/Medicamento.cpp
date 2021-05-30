@@ -13,6 +13,19 @@ Medicamento::Medicamento()
     administracao = "Venosa";
     disponibilizacao = "Garrafa Pet";
 }
+
+Medicamento::Medicamento(Insumo *med, std::string dos, std::string adm, std::string disp)
+{
+    this->nome = med->getNome();
+    this->quantidade = med->getQuantidade();
+    this->tipoInsumo = med->getTipoInsumo();
+    this->valorUnit = med->getValorUnit();
+    this->dtVencimento = med->getDtVencimento();
+    this->nomeFabricante= med->getNomeFabricante();
+    this->dosagem = dos;
+    this->administracao = adm;
+    this->disponibilizacao = disp;
+}
 	
 Medicamento::~Medicamento()
 {

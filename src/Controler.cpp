@@ -132,8 +132,10 @@ void Controler::distribuiInsumo(Locais dest, Insumo *insumo, long quantidade){
         }
     }
 
-    if(insumo->getTipoInsumo() == VACINA){
-        copia = new Vacina();
+    switch(insumo->getTipoInsumo()){
+
+        case VACINA:
+        copia = copiaVacina(insumo);
     }
 
     //copia.recebeAtributos();
@@ -172,40 +174,29 @@ void Controler::delecaoDeInsumo(Locais loc)
 //     //apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizado
 }
 
-void copiaAtributos(Insumo *insumo)
+Insumo* copiaVacina(Vacina *insumo)
 {
     Insumo *copia;
-    switch(insumo->getTipoInsumo()){
 
-        case VACINA:
-            copia = new Vacina();
-            break;
-        case MEDICAMENTO:
-            copia = new Medicamento();
-            break;
-        case EPI:
-            copia = new Epi();
-            break;
-    }
+    copia = new Vacina(insumo, insumo->getQuantDoses(), insumo->getTipoVac(), insumo->getIntervalo());
+        
+    return copia;
+}
 
-    copia->setDtVencimento(insumo->getDtVencimento());
-    copia->setQuantidade(insumo->getQuantidade());
-    copia->setNome(insumo->getNome());
-    copia->setNomeFabricante(insumo->getNomeFabricante());
-    copia->setTipoInsumo(insumo->getTipoInsumo());
-    copia->setValorUnit(insumo->getValorUnit());
+Insumo* copiaMedicamento(Medicamento *insumo)
+{
+    Insumo *copia;
 
-    switch(insumo->getTipoInsumo()){
+    copia = new Medicamento(insumo,insumo->getDosagem(), insumo->getAdministracao(), insumo->getDisponibilizacao());
+        
+    return copia;
+}
 
-        case VACINA:
-            copia = new Vacina();
-            break;
-        case MEDICAMENTO:
-            copia = new Medicamento();
-            break;
-        case EPI:
-            copia = new Epi();
-            break;
-    }
+Insumo* copiaEpi(Epi *insumo)
+{
+    Insumo *copia;
 
+    copia = new Epi(insumo,insumo->getTipo(), insumo->getAtDescricao());
+        
+    return copia;
 }

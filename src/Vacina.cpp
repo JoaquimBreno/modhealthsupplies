@@ -14,6 +14,19 @@ Vacina::Vacina()
     intervalo = 15;
 }
 
+Vacina::Vacina(Insumo *vac, int quantDoses, std::string tipoVac, int interv){
+
+    this->nome = vac->getNome();
+    this->quantidade = vac->getQuantidade();
+    this->tipoInsumo = vac->getTipoInsumo();
+    this->valorUnit = vac->getValorUnit();
+    this->dtVencimento = vac->getDtVencimento();
+    this->nomeFabricante= vac->getNomeFabricante();
+    this->tipoVac = tipoVac;
+    this->quantDoses = quantDoses;
+    this->intervalo = interv;
+}
+
 void Vacina::getDescricao() 
 {
     Insumo::getDescricao();

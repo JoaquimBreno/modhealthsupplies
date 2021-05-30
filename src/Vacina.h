@@ -16,6 +16,7 @@ class Vacina  : public Insumo{
 		void setTipoVac(std::string tVac);
 		void setQuantDoses(int quant);
 		void setIntervalo(int intervalo);
+		Vacina(Insumo *vac, int quantDoses, std::string tipoVac, int interv);
 		Vacina();
 		~Vacina();
 
