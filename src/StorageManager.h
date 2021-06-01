@@ -10,10 +10,11 @@ class StorageManager
 
 
 	public:
-		void lerInsumos();
-		void salvarInsumos(vector<Insumo*> ins);
 		StorageManager();
-		~StorageManager();
+		void lerInsumos();
+		void salvarInsumos(std::vector<Insumo*> ins);
+		
 
 };
+
 #endif

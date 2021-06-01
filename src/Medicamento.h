@@ -4,7 +4,7 @@
 #include "Insumo.h"	
 class Medicamento  : public Insumo
 {
-	private:
+	protected:
 		std::string dosagem;
 		std::string administracao;
 		std::string disponibilizacao;
@@ -18,7 +18,7 @@ class Medicamento  : public Insumo
 		void setDisponibilizacao(std::string disp);
 		void insereEspecificos(std::string dos, std::string adm, std::string disp);
 		Medicamento(Insumo *med);
-		void salvaAtributos(ofstream &file);
+		void salvaAtributos(std::ofstream &file);
 		Medicamento();
 		~Medicamento();
 

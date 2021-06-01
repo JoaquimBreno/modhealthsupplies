@@ -27,12 +27,6 @@ Vacina::Vacina(Insumo *vac){
 
 }
 
-Insumo* Vacina::criaVacina()
-{
-
-    Insumo *vac = new Vacina();
-    return vac;
-}
 
 void Vacina::insereEspecificos(std::string tipoVac, int quantDoses, int intervalo)
 {

@@ -75,11 +75,11 @@ void Insumo::setTipoInsumo(int tipo)
     this->tipoInsumo = tipo;
 }
 
-void insereEspecificos()
+void Insumo::insereEspecificos()
 {
 
 }
-void salvaAtributos(ofstream &file)
+void Insumo::salvaAtributos(ofstream &file)
 {
     
 }

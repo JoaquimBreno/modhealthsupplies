@@ -34,7 +34,7 @@ class Insumo
 		virtual void setNomeFabricante(std::string nomeFabri);
 		virtual void setTipoInsumo(int tipo);
 		virtual void insereEspecificos();
-		virtual void salvaAtributos(ofstream &file) = 0;
+		virtual void salvaAtributos(std::ofstream &file) = 0;
 	
 		Insumo();
 		~Insumo();

@@ -6,6 +6,8 @@
 #include "Epi.h"	
 #include "Medicamento.h"	
 #include "Controler.h"
+#include "StorageManager.h"
+
 using namespace std;
 
 Menu::Menu(){
@@ -26,16 +28,12 @@ void Menu::exibeMenu1(){
     ct.cadastraInsumosMS(med);
     ct.cadastraInsumosMS(epi);
 
-    ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[0], 500);
+    //ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[0], 500);
+    StorageManager pers;
 
-    cout << "Distribuicao realizada" << endl << endl;
-    // for( int i = 0 ; i < teste.size(); i++){
-    //    teste[i]->getDescricao();
-    // }
-    ct.delecaoDeInsumo(ct.getLocal(0));
+    pers.salvarInsumos(ct.getLocal(0).getInsumos());
+    
 
-    ct.consultaInsumosDescricao(ct.getLocal(0));
-    ct.consultaInsumosDescricao(ct.getLocal(1));
 
 }
 

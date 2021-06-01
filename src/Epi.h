@@ -5,7 +5,7 @@
 
 class Epi : public Insumo 
 {
-	private:
+	protected:
 	std::string tipo;
 	std::string descricao;
 
@@ -15,7 +15,7 @@ class Epi : public Insumo
 		std::string getAtDescricao();
 		void setTipo(std::string tipo);
 		void setAtDescricao(std::string desc);
-		void salvaAtributos(ofstream &file);
+		void salvaAtributos(std::ofstream &file);
 		Epi();
 		Epi(Insumo *epi);
 		~Epi();

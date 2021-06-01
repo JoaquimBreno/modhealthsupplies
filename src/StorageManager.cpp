@@ -1,4 +1,5 @@
 #include "StorageManager.h"  
+#include "Insumo.h"
 using namespace std;
 
 StorageManager::StorageManager()
@@ -33,9 +34,4 @@ void StorageManager::salvarInsumos(vector<Insumo*> ins)
         cout << "Nao foi possivel abrir o arquivo!" << endl;
     }
      file.close();
-}
-
-StorageManager::~StorageManager()
-{
-	
 }

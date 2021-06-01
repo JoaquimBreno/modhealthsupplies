@@ -64,5 +64,5 @@ void Epi::insereEspecificos(std::string tipo, std::string descricao)
 
 void Epi::salvaAtributos(ofstream &file){
     file << tipo << ",";
-    file << descricao << ",";
+    file << descricao << endl;
 }
