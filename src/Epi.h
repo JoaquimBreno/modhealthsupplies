@@ -15,9 +15,12 @@ class Epi : public Insumo
 		std::string getAtDescricao();
 		void setTipo(std::string tipo);
 		void setAtDescricao(std::string desc);
+		void salvaAtributos(ofstream &file);
 		Epi();
-		Epi(Insumo *epi, std::string tipo, std::string descricao);
+		Epi(Insumo *epi);
 		~Epi();
+		void insereEspecificos(std::string tipo, std::string descricao);
+
 
 };
 #endif

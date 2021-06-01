@@ -118,14 +118,13 @@ vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 }
 
 
-void Controler::distribuiInsumo(Locais dest, Insumo *insumo, long quantidade){
+void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
     
     Insumo *copia;
 
     //Verificando se há insumos suficientes:
 
-    for(Insumo *ins : locais[0].getInsumos()){              //Percorre o vector de insumos do MS
-
+    for(Insumo *ins : locais[0].getInsumos()){//Percorre o vector de insumos do MS
         //Se achar o insumo que estamos distribuindo, faça:
         if(ins == insumo){
             if(ins->getQuantidade() < quantidade){
@@ -134,12 +133,23 @@ void Controler::distribuiInsumo(Locais dest, Insumo *insumo, long quantidade){
         }
     }
 
-    switch(insumo->getTipoInsumo()){
+    for(Insumo *ins : locais[0].getInsumos()){
 
-        case VACINA:
-        copia = copiaVacina(insumo);
+        if(ins == insumo){
+            switch(ins->getTipoInsumo()){
+
+                case VACINA:
+                    copia = new Vacina(insumo);
+                    break;
+                case MEDICAMENTO:
+                    copia = new Medicamento(insumo);
+                    break;
+                case EPI:
+                    copia = new Epi(insumo);
+                    break;
+            }
+        }
     }
-
     //copia.recebeAtributos();
 
     dest.setInsumo(copia);                                        //Coloca o insumo no destino
@@ -170,29 +180,29 @@ void Controler::delecaoDeInsumo(Locais &loc)
 
 }
 
-Insumo* copiaVacina(Vacina *insumo)
+Insumo* copiaVacina(Insumo *insumo)
 {
     Insumo *copia;
 
-    copia = new Vacina(insumo, insumo->getQuantDoses(), insumo->getTipoVac(), insumo->getIntervalo());
+    copia = new Vacina(insumo);
+    
+    return copia;
+}
+
+Insumo* copiaMedicamento(Insumo *insumo)
+{
+    Insumo *copia;
+
+    copia = new Medicamento(insumo);
         
     return copia;
 }
 
-Insumo* copiaMedicamento(Medicamento *insumo)
+Insumo* copiaEpi(Insumo *insumo)
 {
     Insumo *copia;
 
-    copia = new Medicamento(insumo,insumo->getDosagem(), insumo->getAdministracao(), insumo->getDisponibilizacao());
-        
-    return copia;
-}
-
-Insumo* copiaEpi(Epi *insumo)
-{
-    Insumo *copia;
-
-    copia = new Epi(insumo,insumo->getTipo(), insumo->getAtDescricao());
+    copia = new Epi (insumo);
         
     return copia;
 }

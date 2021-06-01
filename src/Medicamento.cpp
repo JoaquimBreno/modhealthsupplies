@@ -14,7 +14,7 @@ Medicamento::Medicamento()
     disponibilizacao = "Garrafa Pet";
 }
 
-Medicamento::Medicamento(Insumo *med, std::string dos, std::string adm, std::string disp)
+Medicamento::Medicamento(Insumo *med)
 {
     this->nome = med->getNome();
     this->quantidade = med->getQuantidade();
@@ -22,9 +22,14 @@ Medicamento::Medicamento(Insumo *med, std::string dos, std::string adm, std::str
     this->valorUnit = med->getValorUnit();
     this->dtVencimento = med->getDtVencimento();
     this->nomeFabricante= med->getNomeFabricante();
-    this->dosagem = dos;
-    this->administracao = adm;
-    this->disponibilizacao = disp;
+    
+}
+
+void Medicamento::insereEspecificos(std::string dos, std::string adm, std::string disp)
+{
+    this->dosagem = dosagem;
+    this->administracao = administracao;
+    this->disponibilizacao = disponibilizacao;
 }
 	
 Medicamento::~Medicamento()
@@ -70,4 +75,11 @@ void Medicamento::setAdministracao(std::string administracao)
 void Medicamento::setDisponibilizacao(std::string disp)
 {
     this->disponibilizacao = disp;
+}
+
+void Medicamento::salvaAtributos(ofstream &file)
+{
+    file << dosagem << ",";
+    file << administracao <<",";
+    file << disponibilizacao << endl;
 }

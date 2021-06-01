@@ -1,5 +1,6 @@
 #ifndef INSUMO_H
 #define INSUMO_H
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -32,6 +33,8 @@ class Insumo
 		virtual void setDtVencimento(std::string dt);
 		virtual void setNomeFabricante(std::string nomeFabri);
 		virtual void setTipoInsumo(int tipo);
+		virtual void insereEspecificos();
+		virtual void salvaAtributos(ofstream &file) = 0;
 	
 		Insumo();
 		~Insumo();

@@ -1,14 +1,11 @@
 #include "Vacina.h"
+
 using namespace std;
-	
+
 Vacina::Vacina()
 {
 	nome = "Lepo Lepo";
-<<<<<<< HEAD
     quantidade = 10000;
-=======
-    quantidade = 0;
->>>>>>> 66a7a4bdd7468825879a185250eb5fb02804c82f
     quantDoses = 10;
     tipoInsumo = VACINA;
     valorUnit = 21;
@@ -18,7 +15,7 @@ Vacina::Vacina()
     intervalo = 15;
 }
 
-Vacina::Vacina(Insumo *vac, int quantDoses, std::string tipoVac, int interv){
+Vacina::Vacina(Insumo *vac){
 
     this->nome = vac->getNome();
     this->quantidade = vac->getQuantidade();
@@ -26,9 +23,22 @@ Vacina::Vacina(Insumo *vac, int quantDoses, std::string tipoVac, int interv){
     this->valorUnit = vac->getValorUnit();
     this->dtVencimento = vac->getDtVencimento();
     this->nomeFabricante= vac->getNomeFabricante();
+   
+
+}
+
+Insumo* Vacina::criaVacina()
+{
+
+    Insumo *vac = new Vacina();
+    return vac;
+}
+
+void Vacina::insereEspecificos(std::string tipoVac, int quantDoses, int intervalo)
+{
     this->tipoVac = tipoVac;
     this->quantDoses = quantDoses;
-    this->intervalo = interv;
+    this->intervalo = intervalo;
 }
 
 void Vacina::getDescricao() 
@@ -74,4 +84,10 @@ void Vacina::setQuantDoses(int quant)
 void Vacina::setIntervalo(int intervalo)
 {
     this->intervalo = intervalo;
+}
+
+void Vacina::salvaAtributos(ofstream &file){
+    file << tipoVac << ",";
+    file << quantDoses << ",";
+    file << intervalo << endl;
 }

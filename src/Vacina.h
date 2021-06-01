@@ -2,7 +2,8 @@
 #define VACINA_H
 #include "Insumo.h"
 #include <iostream>
-	
+#include <fstream>
+
 class Vacina  : public Insumo{
 	private:
 		std::string tipoVac;
@@ -16,7 +17,10 @@ class Vacina  : public Insumo{
 		void setTipoVac(std::string tVac);
 		void setQuantDoses(int quant);
 		void setIntervalo(int intervalo);
-		Vacina(Insumo *vac, int quantDoses, std::string tipoVac, int interv);
+		Vacina(Insumo *vac);
+		Insumo* Vacina::criaVacina();
+		void insereEspecificos(std::string tipoVac, int quantDoses, int intervalo);
+		void salvaAtributos(ofstream &file);
 		Vacina();
 		~Vacina();
 

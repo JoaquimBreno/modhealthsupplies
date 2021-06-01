@@ -14,7 +14,7 @@ Epi::Epi()
 	descricao = "Tudo de bom para vc , querido cliente amigo";
 }
 
-Epi::Epi(Insumo *epi, std::string tipo, std::string descricao)
+Epi::Epi(Insumo *epi)
 {
     this->nome = epi->getNome();
     this->quantidade = epi->getQuantidade();
@@ -22,10 +22,8 @@ Epi::Epi(Insumo *epi, std::string tipo, std::string descricao)
     this->valorUnit = epi->getValorUnit();
     this->dtVencimento = epi->getDtVencimento();
     this->nomeFabricante= epi->getNomeFabricante();
-    this->tipo = tipo;
-    this->descricao = descricao;
-}
-	
+
+}	
 Epi::~Epi()
 {
 	
@@ -57,4 +55,14 @@ void Epi::setTipo(std::string tipo)
 void Epi::setAtDescricao(std::string desc)
 {
     this->descricao = desc;
+}
+void Epi::insereEspecificos(std::string tipo, std::string descricao)
+{
+    this->tipo = tipo;
+    this->descricao = descricao;
+}
+
+void Epi::salvaAtributos(ofstream &file){
+    file << tipo << ",";
+    file << descricao << ",";
 }
