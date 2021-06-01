@@ -37,6 +37,7 @@ void Menu::exibeMenu1(){
     //    teste[i]->getDescricao();
     // }
     ct.delecaoDeInsumo(ct.getLocal(0));
+
     ct.consultaInsumosDescricao(ct.getLocal(0));
 
 }

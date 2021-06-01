@@ -58,7 +58,7 @@ void Controler::consultaInsumos(Locais loc)
     }
 }
 
-Locais Controler::getLocal(int index)
+Locais & Controler::getLocal(int index)
 {
     return locais[index];
 }
@@ -66,7 +66,9 @@ Locais Controler::getLocal(int index)
 void Controler::consultaInsumosDescricao(Locais loc)
 {   
     //Verifica se no local passado existe algum insumo cadastrado
+    cout << loc.getInsumos().size() << endl;
     if(loc.getInsumos().size() > 0){
+
         //Se sim, faça 3 fors percorrendo os insumos
         //Na ordem vacina, medicamento e epi
 
@@ -145,24 +147,14 @@ void Controler::distribuiInsumo(Locais dest, Insumo *insumo, int quantidade){
 }
 
 
-void Controler::delecaoDeInsumo(Locais loc)
+void Controler::delecaoDeInsumo(Locais &loc)
 {   
     
-    for( int i=0; i<loc.getInsumos().size(); i++ ){
-        if(loc.getInsumos()[i]->getQuantidade() <= 0){//verifica se a quantidade de determinado insumo é 0
-            loc.deletaInsumos(i);//deleta o insumo dentro do vetor insumos
-            std::cout << "entrou aqui" << std::endl;
-        }
-    }
-    //apaga todos os insumos, dentro do vetor insumo, para podermos guardar os atualizados
-
-    //for( unsigned int i = 0 ; i < vec.size(); i++){//adiciona os insumos dentro do vetor insumo, os insumos que estao dentro do vetor vec  
-    //    loc.setInsumo(vec[i]);
-    //}
-    
-}
-
-
+    loc.deletaInsumos();//deleta o insumo dentro do vetor insumos
 
 }
+
+
+
+
 
