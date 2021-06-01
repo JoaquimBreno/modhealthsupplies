@@ -139,22 +139,23 @@ void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
             switch(ins->getTipoInsumo()){
 
                 case VACINA:
-                    copia = new Vacina(insumo);
+                    copia = new Vacina();
+                    //copiar os atributos
                     break;
                 case MEDICAMENTO:
-                    copia = new Medicamento(insumo);
+                    copia = new Vacina();
+                    //copiar os atributos
                     break;
                 case EPI:
-                    copia = new Epi(insumo);
+                    copia = new Vacina();
+                    //copiar os atributos
                     break;
             }
         }
     }
-    //copia.recebeAtributos();
 
     dest.setInsumo(copia);                                        //Coloca o insumo no destino
     dest.getInsumos().back()->setQuantidade(quantidade);          //Muda a quantidade do insumo no destino para a quant que queremos mandar
-    cout << locais[0].getInsumos()[0]->getQuantidade() << endl;
     
     //Agora vamos subtrair o insumo mandado lá do MS
 
@@ -180,29 +181,3 @@ void Controler::delecaoDeInsumo(Locais &loc)
 
 }
 
-Insumo* copiaVacina(Insumo *insumo)
-{
-    Insumo *copia;
-
-    copia = new Vacina(insumo);
-    
-    return copia;
-}
-
-Insumo* copiaMedicamento(Insumo *insumo)
-{
-    Insumo *copia;
-
-    copia = new Medicamento(insumo);
-        
-    return copia;
-}
-
-Insumo* copiaEpi(Insumo *insumo)
-{
-    Insumo *copia;
-
-    copia = new Epi (insumo);
-        
-    return copia;
-}

@@ -28,10 +28,10 @@ void Menu::exibeMenu1(){
     ct.cadastraInsumosMS(med);
     ct.cadastraInsumosMS(epi);
 
-    //ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[0], 500);
-    StorageManager pers;
+    ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[0], 500);
+    //StorageManager pers;
 
-    pers.salvarInsumos(ct.getLocal(0).getInsumos());
+    //pers.salvarInsumos(ct.getLocal(0).getInsumos());
     
 
 

@@ -83,3 +83,4 @@ void Medicamento::salvaAtributos(ofstream &file)
     file << administracao <<",";
     file << disponibilizacao << endl;
 }
+

@@ -19,9 +19,6 @@ class Controler
 
 		std::vector<Insumo*> consultaInsumoPorTipo(Locais loc, int tipoInsumo); //Verificar o tipo ( array, vector ou list )
 		void distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade);
-		Insumo* copiaVacina(Vacina *insumo);
-		Insumo* copiaMedicamento(Medicamento *insumo);
-		Insumo* copiaEpi(Epi *insumo);
 		void delecaoDeInsumo(Locais &loc);
 		Locais & getLocal(int index);
 		

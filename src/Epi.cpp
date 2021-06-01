@@ -11,7 +11,7 @@ Epi::Epi()
 	nomeFabricante = "Joca Cornelio";
 	tipoInsumo = EPI;
 	tipo = "Mascara P95";
-	descricao = "Tudo de bom para vc , querido cliente amigo";
+	descricao = "Tudo de bom para vc querido cliente amigo";
 }
 
 Epi::Epi(Insumo *epi)
@@ -65,4 +65,8 @@ void Epi::insereEspecificos(std::string tipo, std::string descricao)
 void Epi::salvaAtributos(ofstream &file){
     file << tipo << ",";
     file << descricao << endl;
+}
+
+std::string Epi::getTypeVac(){
+
 }

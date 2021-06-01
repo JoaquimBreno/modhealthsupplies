@@ -13,12 +13,14 @@ class Medicamento  : public Insumo
 		std::string getDosagem();
 		std::string getAdministracao();
 		std::string getDisponibilizacao();
+		std::string getTypeVac();
 		void setDosagem(std::string dosagem);
 		void setAdministracao(std::string administracao);
 		void setDisponibilizacao(std::string disp);
 		void insereEspecificos(std::string dos, std::string adm, std::string disp);
 		Medicamento(Insumo *med);
 		void salvaAtributos(std::ofstream &file);
+		std::string getTypeVac();
 		Medicamento();
 		~Medicamento();
 
