@@ -15,7 +15,7 @@ class Locais
 	public:
 		void setAtributos(std::string nome, int index);
 		void setInsumo(Insumo *ptr);
-		void deletaInsumos(int i);
+		void deletaInsumos();
 		std::vector<Insumo*> getInsumos();
 		
 		

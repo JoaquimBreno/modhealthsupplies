@@ -4,7 +4,11 @@ using namespace std;
 Vacina::Vacina()
 {
 	nome = "Lepo Lepo";
+<<<<<<< HEAD
     quantidade = 10000;
+=======
+    quantidade = 0;
+>>>>>>> 66a7a4bdd7468825879a185250eb5fb02804c82f
     quantDoses = 10;
     tipoInsumo = VACINA;
     valorUnit = 21;

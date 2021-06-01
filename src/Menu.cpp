@@ -29,6 +29,11 @@ void Menu::exibeMenu1(){
     ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[0], 500);
 
     cout << "Distribuicao realizada" << endl << endl;
+    // for( int i = 0 ; i < teste.size(); i++){
+    //    teste[i]->getDescricao();
+    // }
+    ct.delecaoDeInsumo(ct.getLocal(0));
+
     ct.consultaInsumosDescricao(ct.getLocal(0));
     ct.consultaInsumosDescricao(ct.getLocal(1));
 
