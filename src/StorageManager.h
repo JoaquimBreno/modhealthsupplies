@@ -3,6 +3,8 @@
 #include <fstream>
 #include "Insumo.h"
 #include <vector>
+#include "Locais.h"
+#include <sstream>
 
 class StorageManager  
 {
@@ -11,8 +13,8 @@ class StorageManager
 
 	public:
 		StorageManager();
-		void lerInsumos();
-		void salvarInsumos(std::vector<Insumo*> ins);
+		void lerInsumos(Locais &loc);
+		void salvarInsumos(std::vector<Insumo*> ins, Locais loc);
 		
 
 };

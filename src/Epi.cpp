@@ -67,6 +67,3 @@ void Epi::salvaAtributos(ofstream &file){
     file << descricao << endl;
 }
 
-std::string Epi::getTypeVac(){
-
-}

@@ -50,3 +50,8 @@ void Locais::deletaInsumos(){
     //     insumos[x]->getDescricao();
     // }
 }
+
+std::string Locais::getNome()
+{
+    return nome;
+}

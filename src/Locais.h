@@ -17,6 +17,7 @@ class Locais
 		void setInsumo(Insumo *ptr);
 		void deletaInsumos();
 		std::vector<Insumo*> getInsumos();
+		std::string getNome();
 		
 		
 		Locais();
