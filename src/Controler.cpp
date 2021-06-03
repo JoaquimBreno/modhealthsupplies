@@ -71,24 +71,24 @@ void Controler::consultaInsumosDescricao(Locais loc)
 
         //Se sim, faça 3 fors percorrendo os insumos
         //Na ordem vacina, medicamento e epi
-
+        
         for(Insumo *ins : loc.getInsumos()){// For each insumo em insumos
             if(ins->getTipoInsumo() == VACINA){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
-                std::cout << "Vacina: " << endl;
+                std::cout << "Vacina: " << endl << endl;
                 ins->getDescricao();
             }
         }
 
         for(Insumo *ins : loc.getInsumos()){ 
             if(ins->getTipoInsumo() == MEDICAMENTO){ 
-                std::cout << "Medicamento: " << endl;
+                std::cout << "Medicamento: " <<endl << endl;
                 ins->getDescricao();
             }
         }
 
         for(Insumo *ins : loc.getInsumos()){
             if(ins->getTipoInsumo() == EPI){
-                std::cout << "EPI: " << endl;
+                std::cout << "EPI: " << endl << endl;
                 ins->getDescricao();
             }
         }   
@@ -118,32 +118,59 @@ vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 }
 
 
-void Controler::distribuiInsumo(Locais dest, Insumo *insumo, int quantidade){
-    //Verificando se há insumos suficientes:
-    for(Insumo *ins : locais[0].getInsumos()){              //Percorre o vector de insumos do MS
+void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
+    
+    Insumo *copia;
 
+    //Verificando se há insumos suficientes:
+
+    for(Insumo *ins : locais[0].getInsumos()){//Percorre o vector de insumos do MS
         //Se achar o insumo que estamos distribuindo, faça:
         if(ins == insumo){
             if(ins->getQuantidade() < quantidade){
                 std::cout << "Nao ha insumos suficientes no estoque MS." << std::endl; 
-            }  
+            }
         }
-
     }
 
-    dest.setInsumo(insumo);                                 //Coloca o insumo no destino
-    dest.getInsumos().back()->setQuantidade(quantidade);    //Muda a quantidade do insumo no destino para a quant que queremos mandar
+    for(Insumo *ins : locais[0].getInsumos()){
 
+        if(ins == insumo){
+            switch(ins->getTipoInsumo()){
+
+                case VACINA:
+                    copia = new Vacina();
+                    //copiar os atributos
+                    break;
+                case MEDICAMENTO:
+                    copia = new Vacina();
+                    //copiar os atributos
+                    break;
+                case EPI:
+                    copia = new Vacina();
+                    //copiar os atributos
+                    break;
+            }
+        }
+    }
+
+    dest.setInsumo(copia);                                        //Coloca o insumo no destino
+    dest.getInsumos().back()->setQuantidade(quantidade);          //Muda a quantidade do insumo no destino para a quant que queremos mandar
+    
     //Agora vamos subtrair o insumo mandado lá do MS
 
     for(Insumo *ins : locais[0].getInsumos()){              //Percorre o vector de insumos do MS
 
         //Se achar o insumo que estamos distribuindo, faça:
         if(ins == insumo){
+            long quantidadeMS = ins->getQuantidade();
             ins->setQuantidade(ins->getQuantidade() - quantidade);  //Muda a qunatidade para a que existia menos a que foi distribuída
         }
 
     }
+
+    locais[0].getInsumos()[0]->getDescricao();
+
 }
 
 
@@ -153,8 +180,4 @@ void Controler::delecaoDeInsumo(Locais &loc)
     loc.deletaInsumos();//deleta o insumo dentro do vetor insumos
 
 }
-
-
-
-
 

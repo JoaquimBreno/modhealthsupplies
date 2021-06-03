@@ -6,11 +6,12 @@ Insumo::Insumo()
 {
 	
 }
-	
+
 Insumo::~Insumo()
 {
-	
+   
 }
+
 
 int Insumo::getTipoInsumo()
 {
@@ -47,4 +48,42 @@ void Insumo::getDescricao(){
 void Insumo::setQuantidade(int quant)
 {
     this->quantidade = quant;
+}
+
+void Insumo::setNome(std::string n)
+{
+    this->nome = n;
+}
+
+void Insumo::setValorUnit(double valor)
+{
+    this->valorUnit = valor;
+}
+
+void Insumo::setDtVencimento(std::string dt)
+{
+    this->dtVencimento = dt;
+}
+
+void Insumo::setNomeFabricante(std::string nomeFabri)
+{
+    this->nomeFabricante = nomeFabri;
+}
+
+void Insumo::setTipoInsumo(int tipo)
+{
+    this->tipoInsumo = tipo;
+}
+
+void Insumo::insereEspecificos()
+{
+
+}
+void Insumo::salvaAtributos(ofstream &file)
+{
+    
+}
+
+void Insumo::setAtributos(std::vector<string> atributos){
+
 }
