@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #define VACINA 1
 #define MEDICAMENTO 2
@@ -38,6 +39,7 @@ class Insumo
 		virtual void setTipoInsumo(int tipo);
 		virtual void insereEspecificos();
 		virtual void salvaAtributos(std::ofstream &file) = 0;
+		virtual void setAtributos(std::vector<std::string> atributos) = 0;
 	
 		Insumo();
 		~Insumo();

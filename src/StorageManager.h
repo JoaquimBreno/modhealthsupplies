@@ -1,10 +1,14 @@
 #ifndef STORAGEMANAGER_H
 #define STORAGEMANAGER_H
 #include <fstream>
-#include "Insumo.h"
 #include <vector>
-#include "Locais.h"
 #include <sstream>
+#include "Insumo.h"
+#include "Vacina.h"
+#include "Medicamento.h"
+#include "Epi.h"
+#include "Locais.h"
+
 
 class StorageManager  
 {

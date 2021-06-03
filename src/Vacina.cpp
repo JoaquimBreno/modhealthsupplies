@@ -85,3 +85,15 @@ void Vacina::salvaAtributos(ofstream &file){
     file << quantDoses << ",";
     file << intervalo << endl;
 }
+
+void Vacina::setAtributos(std::vector<std::string> atributos){
+    tipoInsumo = stoi(atributos[0]);
+    nome = atributos[1];
+    quantidade = stol(atributos[2]);
+    valorUnit = stod(atributos[3]);
+    dtVencimento = atributos[4];
+    nomeFabricante = atributos[5];
+    tipoVac = atributos[6];
+    quantDoses = stoi(atributos[7]);
+    intervalo = stoi(atributos[8]);
+}

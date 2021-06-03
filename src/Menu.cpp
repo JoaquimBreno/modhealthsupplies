@@ -28,13 +28,13 @@ void Menu::exibeMenu1(){
     ct.cadastraInsumosMS(med);
     ct.cadastraInsumosMS(epi);
 
-    ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[0], 500);
+    //ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[0], 500);
     StorageManager pers;
 
     pers.salvarInsumos(ct.getLocal(0).getInsumos(), ct.getLocal(0));
+    pers.lerInsumos(ct.getLocal(0));
     
-
-
+    ct.consultaInsumos(ct.getLocal(0));
 }
 
 void Menu::exibeMenu2(){

@@ -84,3 +84,16 @@ void Medicamento::salvaAtributos(ofstream &file)
     file << disponibilizacao << endl;
 }
 
+void Medicamento::setAtributos(std::vector<string> atributos){ 
+    
+    tipoInsumo = stoi(atributos[0]); // Converte string para inteiro
+    nome = atributos[1];
+    quantidade = stol(atributos[2]); // Converte string para long
+    valorUnit = stod(atributos[3]); // Converte string para double
+    dtVencimento = atributos[4];
+    nomeFabricante = atributos[5];
+    dosagem = atributos[6];
+    administracao = atributos[7];
+    disponibilizacao = atributos[8];
+    
+}

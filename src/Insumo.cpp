@@ -83,3 +83,7 @@ void Insumo::salvaAtributos(ofstream &file)
 {
     
 }
+
+void Insumo::setAtributos(std::vector<string> atributos){
+
+}

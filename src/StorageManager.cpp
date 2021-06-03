@@ -13,41 +13,80 @@ void StorageManager::lerInsumos(Locais &loc)
     
     if(file.is_open())
     {
-        string aux;
-        vector<string> atributos;
-        string palavra;
-        int x = 9;
-
+        bool existeInsumo = false;
+        
         while(!file.eof()){
+            string aux;
+            vector<string> atributos;
+            string palavra;
+            int x = 9;
+            bool verificaLocal = false;
+
             getline(file, aux);     //Lê linha por linha, colocando em aux
+        
+            istringstream linhaInsumo(aux); //Transforma em uma stream
             
-            if(aux == loc.getNome()){   //Se achar uma linha igual ao nome do local desejado, faça:
-                getline(file, aux);     //Lê a linha seguinte
-                istringstream linhaInsumo(aux); //Transforma em uma stream
-                
-                //Lê a linha do insumo e vai colocando cada palavra em um vector para ser usada como atributo
-                //o número x corresponde ao número de atributos de cada insumo 
-                for(int i=0; i<x; i++){
-                    getline(linhaInsumo, palavra, ',');
+            //Lê a linha do insumo e vai colocando cada palavra em um vector para ser usada como atributo
+            //o número x corresponde ao número de atributos de cada insumo 
+            for(int i=0; i<x; i++){
+                getline(linhaInsumo, palavra, ',');
+            
+                if(i==0 && (stoi(palavra) == loc.getIndex()) ){
+                    verificaLocal = true;
+                }
+                if( verificaLocal && i!=0){ // Verifica se a primeira palavra da linha tem o mesmo index do local
                     
-                    if(i==0){
-                        switch(stoi(palavra)){
+                    if(!existeInsumo){
+                        loc.deletaTodosInsumos();
+                        existeInsumo = true;
+                    }
+
+                    if(i==1){
+                        switch(stoi (palavra)){
+
                             case VACINA:
-                                x = 9;
+                                x = 10;
                                 break;
                             case MEDICAMENTO:
-                                x = 9;
+                                x = 10;
                                 break;
                             case EPI:
-                                x = 8;
+                                x = 9;
                                 break;
                         }
-
                     }
-                    atributos.push_back(palavra);
+                    
+                   atributos.push_back(palavra);
                 }
-
             }
+
+            switch(stoi(atributos[0])){ // Verifica a coluna do tipo
+                case VACINA:
+                {
+                    Insumo *vac = new Vacina();
+                    vac->setAtributos(atributos);
+                    loc.setInsumo(vac);
+                    delete vac;
+                    break;
+                }
+                case MEDICAMENTO:
+                {
+                    Insumo *med = new Medicamento();
+                    med->setAtributos(atributos);
+                    loc.setInsumo(med);
+                    delete med;
+                    break;
+                }
+                case EPI:
+                {
+                    Insumo *epi = new Epi();
+                    epi->setAtributos(atributos);
+                    loc.setInsumo(epi);
+                    delete epi;
+                    break;
+                }
+            }
+            
         }
 
     }
@@ -67,7 +106,7 @@ void StorageManager::salvarInsumos(vector<Insumo*> ins, Locais loc)
     {
 
         for(int i = 0; i < ins.size(); i++){
-            file << loc.getNome() << ",";
+            file << loc.getIndex() << ",";
             file << ins[i]->getTipoInsumo() << ",";
             file << ins[i]->getNome() << ",";
             file << ins[i]->getQuantidade() << ",";

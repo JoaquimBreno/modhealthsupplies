@@ -67,3 +67,13 @@ void Epi::salvaAtributos(ofstream &file){
     file << descricao << endl;
 }
 
+void Epi::setAtributos(std::vector<string> atributos){
+    tipoInsumo = stoi(atributos[0]);
+    nome = atributos[1];
+    quantidade = stol(atributos[2]);
+    valorUnit = stod(atributos[3]);
+    dtVencimento = atributos[4];
+    nomeFabricante = atributos[5];
+    tipo = atributos[6];
+    descricao = atributos[7];
+}
