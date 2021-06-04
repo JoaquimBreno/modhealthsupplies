@@ -40,7 +40,8 @@ class Insumo
 		virtual void insereEspecificos();
 		virtual void salvaAtributos(std::ofstream &file) = 0;
 		virtual void setAtributos(std::vector<std::string> atributos) = 0;
-	
+		virtual void setAtributos(std::string nome, long quantidade, double valorUnit, std::string dtVencimento, std::string nomeFabricante, int tipoInsumo);
+
 		Insumo();
 		~Insumo();
 };

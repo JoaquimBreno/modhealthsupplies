@@ -5,9 +5,9 @@ using namespace std;
 
 Controler::Controler()
 {
-	string nomesLocais[28] = {"Ministério da Saude", "Acre","Alagoas","Amapá","Amazonas","Bahia","Ceará","Distrito Federal","Espírito Santo",
-    "Goiás","Maranhão","Mato Grosso","Mato Grosso do Sul","Minas Gerais","Pará","Paraíba","Paraná","Pernambuco","Piauí",
-    "Rio de Janeiro","Rio Grande do Norte","Rio Grande do Sul","Rondônia","Roraima","Santa Catarina","São Paulo","Sergipe",
+	string nomesLocais[28] = {"Ministerio da Saude", "Acre","Alagoas","Amapa","Amazonas","Bahia","Ceara","Distrito Federal","Espirito Santo",
+    "Goias","Maranhao","Mato Grosso","Mato Grosso do Sul","Minas Gerais","Para","Paraiba","Parana","Pernambuco","Piaui",
+    "Rio de Janeiro","Rio Grande do Norte","Rio Grande do Sul","Rondonia","Roraima","Santa Catarina","Sao Paulo","Sergipe",
     "Tocantins"};
 	for(int i=0; i<28; i++){
         locais[i].setAtributos(nomesLocais[i], i);
@@ -119,58 +119,43 @@ vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 
 
 void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
-    
     Insumo *copia;
+    int iterator = 0;
 
     //Verificando se há insumos suficientes:
 
-    for(Insumo *ins : locais[0].getInsumos()){//Percorre o vector de insumos do MS
-        //Se achar o insumo que estamos distribuindo, faça:
+    for(Insumo *ins : locais[0].getInsumos()){
+        long qtdeTemp = 0;
+
         if(ins == insumo){
+
             if(ins->getQuantidade() < quantidade){
                 std::cout << "Nao ha insumos suficientes no estoque MS." << std::endl; 
             }
-        }
-    }
-
-    for(Insumo *ins : locais[0].getInsumos()){
-
-        if(ins == insumo){
-            switch(ins->getTipoInsumo()){
-
-                case VACINA:
-                    copia = new Vacina();
-                    //copiar os atributos
-                    break;
-                case MEDICAMENTO:
-                    copia = new Vacina();
-                    //copiar os atributos
-                    break;
-                case EPI:
-                    copia = new Vacina();
-                    //copiar os atributos
-                    break;
+            else{
+                qtdeTemp = ins->getQuantidade();
+                qtdeTemp -= quantidade;
+                
+                ins->setQuantidade(ins->getQuantidade() - quantidade);
+                locais[0].getInsumos()[iterator]->getQuantidade();
+                break;
             }
+            
         }
+
+        iterator++;
     }
 
-    dest.setInsumo(copia);                                        //Coloca o insumo no destino
-    dest.getInsumos().back()->setQuantidade(quantidade);          //Muda a quantidade do insumo no destino para a quant que queremos mandar
+    cout << iterator << endl;
+    if(dest.getInsumos().size()){
+        for(Insumo *ins : dest.getInsumos()){
+            cout << "entrou aqui" << endl;
+        }
+    }
+    else{
+        cout << "Tem nenhum insumo no destino kkk foi boa major" << endl;
+    }
     
-    //Agora vamos subtrair o insumo mandado lá do MS
-
-    for(Insumo *ins : locais[0].getInsumos()){              //Percorre o vector de insumos do MS
-
-        //Se achar o insumo que estamos distribuindo, faça:
-        if(ins == insumo){
-            long quantidadeMS = ins->getQuantidade();
-            ins->setQuantidade(ins->getQuantidade() - quantidade);  //Muda a qunatidade para a que existia menos a que foi distribuída
-        }
-
-    }
-
-    locais[0].getInsumos()[0]->getDescricao();
-
 }
 
 
