@@ -157,7 +157,8 @@ void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
                             break;               
                     }
                     copia->setQuantidade(quantidade);
-                    dest.setInsumo(copia);     
+                    dest.setInsumo(copia);   
+                    delete copia;  
                 }  
             }
             

@@ -30,62 +30,65 @@ void StorageManager::lerInsumos(Locais &loc)
             //o número x corresponde ao número de atributos de cada insumo 
             for(int i=0; i<x; i++){
                 getline(linhaInsumo, palavra, ',');
-            
-                if(i==0 && (stoi(palavra) == loc.getIndex()) ){
-                    verificaLocal = true;
-                }
-                if( verificaLocal && i!=0){ // Verifica se a primeira palavra da linha tem o mesmo index do local
-                    
-                    if(!existeInsumo){
-                        loc.deletaTodosInsumos();
-                        existeInsumo = true;
+                
+                try{
+                    if(i==0 && (stoi(palavra) == loc.getIndex()) ){
+                        cout << stoi(palavra) << endl;
+                        verificaLocal = true;
                     }
-
-                    if(i==1){
-                        switch(stoi (palavra)){
-
-                            case VACINA:
-                                x = 10;
-                                break;
-                            case MEDICAMENTO:
-                                x = 10;
-                                break;
-                            case EPI:
-                                x = 9;
-                                break;
+                    if( verificaLocal && i!=0){ // Verifica se a primeira palavra da linha tem o mesmo index do local
+                        
+                        if(!existeInsumo){
+                            loc.deletaTodosInsumos();
+                            existeInsumo = true;
                         }
-                    }
-                    
-                   atributos.push_back(palavra);
-                }
-            }
 
-            switch(stoi(atributos[0])){ // Verifica a coluna do tipo
-                case VACINA:
-                {
-                    Insumo *vac = new Vacina();
-                    vac->setAtributos(atributos);
-                    loc.setInsumo(vac);
-                    delete vac;
-                    break;
+                        if(i==1){
+                            switch(stoi(palavra)){
+
+                                case VACINA:
+                                    x = 10;
+                                    break;
+                                case MEDICAMENTO:
+                                    x = 10;
+                                    break;
+                                case EPI:
+                                    x = 9;
+                                    break;
+                            }
+                        }
+                        
+                    atributos.push_back(palavra);
+                    }
                 }
-                case MEDICAMENTO:
-                {
-                    Insumo *med = new Medicamento();
-                    med->setAtributos(atributos);
-                    loc.setInsumo(med);
-                    delete med;
-                    break;
-                }
-                case EPI:
-                {
-                    Insumo *epi = new Epi();
-                    epi->setAtributos(atributos);
-                    loc.setInsumo(epi);
-                    delete epi;
-                    break;
+                catch(std::invalid_argument){
+                    cout << "Invalid argument" << endl;
                 }
             }
+            
+            for( int i = 0 ; i < atributos.size(); i++){
+                cout << " atributo " << i << " = " << atributos[i] << endl;
+            }
+            // Insumo *generico;
+            // switch(std::stoi(atributos[0])){ // Verifica a coluna do tipo
+            //     case VACINA:
+            //     {
+            //         generico = new Vacina(atributos);
+            //         break;
+            //     }
+            //     case MEDICAMENTO:
+            //     {
+            //         generico = new Medicamento(atributos);
+            //         break;
+            //     }
+            //     case EPI:
+            //     {
+            //         generico = new Epi(atributos);
+            //         break;
+            //     }
+            // }
+            // loc.setInsumo(generico);
+            // delete generico;
             
         }
 

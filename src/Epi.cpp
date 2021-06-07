@@ -26,6 +26,19 @@ Epi::Epi(Insumo *epi)
     this->descricao = ((Epi*)epi)->getAtDescricao();
 
 }	
+
+Epi::Epi(vector<string> atributos){
+
+    this->tipoInsumo = std::stoi(atributos[0]);    
+    this->nome = atributos[1];
+    this->quantidade = std::stol(atributos[2], nullptr, 10);
+    this->valorUnit = std::stod(atributos[3]);
+    this->dtVencimento = atributos[4];
+    this->nomeFabricante= atributos[5];
+    this->tipo = atributos[6];
+    this->descricao = atributos[7];
+}
+
 Epi::~Epi()
 {
 	
@@ -58,24 +71,9 @@ void Epi::setAtDescricao(std::string desc)
 {
     this->descricao = desc;
 }
-void Epi::insereEspecificos(std::string tipo, std::string descricao)
-{
-    this->tipo = tipo;
-    this->descricao = descricao;
-}
 
 void Epi::salvaAtributos(ofstream &file){
     file << tipo << ",";
     file << descricao << endl;
 }
 
-void Epi::setAtributos(std::vector<string> atributos){
-    tipoInsumo = stoi(atributos[0]);
-    nome = atributos[1];
-    quantidade = stol(atributos[2]);
-    valorUnit = stod(atributos[3]);
-    dtVencimento = atributos[4];
-    nomeFabricante = atributos[5];
-    tipo = atributos[6];
-    descricao = atributos[7];
-}
