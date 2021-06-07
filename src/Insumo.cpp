@@ -79,11 +79,23 @@ void Insumo::insereEspecificos()
 {
 
 }
+
 void Insumo::salvaAtributos(ofstream &file)
 {
     
 }
 
-void Insumo::setAtributos(std::vector<string> atributos){
+void Insumo::setAtributos(std::vector<std::string> atributos)
+{
 
+}
+
+void Insumo::setAtributos(std::string nome, long quantidade, double valorUnit, std::string dtVencimento, std::string nomeFabricante, int tipoInsumo)
+{
+    this->nome = nome;
+    this->quantidade = quantidade;
+    this->valorUnit = valorUnit;
+    this->dtVencimento = dtVencimento;
+    this->tipoInsumo = tipoInsumo;
+    this->nomeFabricante = nomeFabricante;
 }

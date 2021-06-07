@@ -7,6 +7,6 @@ int main(void){
     setlocale(LC_ALL, "portuguese-brazilian");
 
     Menu mn;
-    mn.exibeMenu1();
+    mn.exibeMenu2();
     return 0;
 }
