@@ -43,6 +43,7 @@ void Menu::exibeMenu1(Controler ct){
 void Menu::exibeMenu2(){
     
     Controler ct;
+    StorageManager st;
     Insumo *vac = new Vacina();
     Insumo *med = new Medicamento();
     Insumo *epi = new Epi();
@@ -51,7 +52,9 @@ void Menu::exibeMenu2(){
     ct.cadastraInsumosMS(med);
     ct.cadastraInsumosMS(epi);
 
-    ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[2], 500);
+    //st.salvarInsumos(ct.getLocal(0).getInsumos(), ct.getLocal(0));
+    st.lerInsumos(ct.getLocal(0));
+    //ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[2], 500);
     ct.consultaInsumos(ct.getLocal(0));
 
 }	

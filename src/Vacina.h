@@ -17,11 +17,11 @@ class Vacina  : public Insumo{
 		void setTipoVac(std::string tVac);
 		void setQuantDoses(int quant);
 		void setIntervalo(int intervalo);
-		Vacina(Insumo *vac);
-		void insereEspecificos(std::string tipoVac, int quantDoses, int intervalo);
 		void salvaAtributos(std::ofstream &file);
-		void setAtributos(std::vector<std::string> atributos);
+		
 		Vacina();
+		Vacina(Insumo *vac);
+		Vacina(std::vector<std::string> atributos);
 		~Vacina();
 
 };

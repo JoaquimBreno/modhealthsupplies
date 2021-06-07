@@ -119,13 +119,8 @@ vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 
 
 void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
-    Insumo *copia;
-    int iterator = 0;
-
-    //Verificando se há insumos suficientes:
-
+    
     for(Insumo *ins : locais[0].getInsumos()){
-        long qtdeTemp = 0;
 
         if(ins == insumo){
 
@@ -133,29 +128,45 @@ void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
                 std::cout << "Nao ha insumos suficientes no estoque MS." << std::endl; 
             }
             else{
-                qtdeTemp = ins->getQuantidade();
-                qtdeTemp -= quantidade;
-                
+                int iterator = 1;
                 ins->setQuantidade(ins->getQuantidade() - quantidade);
-                locais[0].getInsumos()[iterator]->getQuantidade();
-                break;
+                
+                if(dest.getInsumos().size()){
+                    for(Insumo *dins : dest.getInsumos()){ // Varre os insumos do destino
+                        if(dins->getNome() == insumo->getNome()){ // Verifica se o nome é igual ao insumo do MS
+                            std::cout << "chegou aqui1"<< std::endl; 
+                            dins->setQuantidade(dins->getQuantidade() + quantidade); // Soma a quantidade;
+                            break;
+                        }
+                        iterator++;
+                    }
+                }
+                
+                if(iterator == dest.getInsumos().size() || !dest.getInsumos().size()){ // Gera um novo insumo caso a verificação não encontrar insumos compatíveis
+    
+                    Insumo *copia;
+                    switch (insumo->getTipoInsumo()){
+                        case 1:
+                            copia = new Vacina(ins);
+                            break;
+                        case 2:
+                            copia = new Medicamento(ins);
+                            break;
+                        case 3:
+                            copia = new Epi(ins);
+                            break;               
+                    }
+                    copia->setQuantidade(quantidade);
+                    dest.setInsumo(copia);   
+                    delete copia;  
+                }  
             }
             
+            break;
         }
 
-        iterator++;
     }
-
-    cout << iterator << endl;
-    if(dest.getInsumos().size()){
-        for(Insumo *ins : dest.getInsumos()){
-            cout << "entrou aqui" << endl;
-        }
-    }
-    else{
-        cout << "Tem nenhum insumo no destino kkk foi boa major" << endl;
-    }
-    
+  
 }
 
 

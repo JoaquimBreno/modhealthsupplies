@@ -75,19 +75,9 @@ void Insumo::setTipoInsumo(int tipo)
     this->tipoInsumo = tipo;
 }
 
-void Insumo::insereEspecificos()
-{
-
-}
-
 void Insumo::salvaAtributos(ofstream &file)
 {
     
-}
-
-void Insumo::setAtributos(std::vector<std::string> atributos)
-{
-
 }
 
 void Insumo::setAtributos(std::string nome, long quantidade, double valorUnit, std::string dtVencimento, std::string nomeFabricante, int tipoInsumo)

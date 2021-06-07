@@ -22,16 +22,25 @@ Medicamento::Medicamento(Insumo *med)
     this->valorUnit = med->getValorUnit();
     this->dtVencimento = med->getDtVencimento();
     this->nomeFabricante= med->getNomeFabricante();
-    
+    this->dosagem = ((Medicamento*)med)->getDosagem();
+    this->administracao = ((Medicamento*)med)->getAdministracao();
+    this->disponibilizacao= ((Medicamento*)med)->getDisponibilizacao();
+
 }
 
-void Medicamento::insereEspecificos(std::string dos, std::string adm, std::string disp)
-{
-    this->dosagem = dosagem;
-    this->administracao = administracao;
-    this->disponibilizacao = disponibilizacao;
+Medicamento::Medicamento(vector<string> atributos){
+
+    this->tipoInsumo = std::stoi(atributos[0]);    
+    this->nome = atributos[1];
+    this->quantidade = std::stol(atributos[2], nullptr, 10);
+    this->valorUnit = std::stod(atributos[3]);
+    this->dtVencimento = atributos[4];
+    this->nomeFabricante= atributos[5];
+    this->dosagem = atributos[6];
+    this->administracao = atributos[7];
+    this->disponibilizacao= atributos[8];
 }
-	
+
 Medicamento::~Medicamento()
 {
 	
@@ -82,18 +91,4 @@ void Medicamento::salvaAtributos(ofstream &file)
     file << dosagem << ",";
     file << administracao <<",";
     file << disponibilizacao << endl;
-}
-
-void Medicamento::setAtributos(std::vector<string> atributos){ 
-    
-    tipoInsumo = stoi(atributos[0]); // Converte string para inteiro
-    nome = atributos[1];
-    quantidade = stol(atributos[2]); // Converte string para long
-    valorUnit = stod(atributos[3]); // Converte string para double
-    dtVencimento = atributos[4];
-    nomeFabricante = atributos[5];
-    dosagem = atributos[6];
-    administracao = atributos[7];
-    disponibilizacao = atributos[8];
-    
 }
