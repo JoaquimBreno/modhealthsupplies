@@ -22,7 +22,10 @@ Medicamento::Medicamento(Insumo *med)
     this->valorUnit = med->getValorUnit();
     this->dtVencimento = med->getDtVencimento();
     this->nomeFabricante= med->getNomeFabricante();
-    
+    this->dosagem = ((Medicamento*)med)->getDosagem();
+    this->dtVencimento = ((Medicamento*)med)->getAdministracao();
+    this->nomeFabricante= ((Medicamento*)med)->getDisponibilizacao();
+
 }
 
 void Medicamento::insereEspecificos(std::string dos, std::string adm, std::string disp)

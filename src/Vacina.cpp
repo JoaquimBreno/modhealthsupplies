@@ -23,7 +23,9 @@ Vacina::Vacina(Insumo *vac){
     this->valorUnit = vac->getValorUnit();
     this->dtVencimento = vac->getDtVencimento();
     this->nomeFabricante= vac->getNomeFabricante();
-   
+    this->tipoVac = ((Vacina*)vac)->getTipoVac();
+    this->dtVencimento = ((Vacina*)vac)->getDtVencimento();
+    this->nomeFabricante= ((Vacina*)vac)->getNomeFabricante();
 
 }
 

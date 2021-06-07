@@ -22,6 +22,8 @@ Epi::Epi(Insumo *epi)
     this->valorUnit = epi->getValorUnit();
     this->dtVencimento = epi->getDtVencimento();
     this->nomeFabricante= epi->getNomeFabricante();
+    this->tipo = ((Epi*)epi)->getTipo();
+    this->descricao = ((Epi*)epi)->getAtDescricao();
 
 }	
 Epi::~Epi()

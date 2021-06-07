@@ -125,7 +125,6 @@ void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
     //Verificando se há insumos suficientes:
 
     for(Insumo *ins : locais[0].getInsumos()){
-        long qtdeTemp = 0;
 
         if(ins == insumo){
 
@@ -133,29 +132,45 @@ void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
                 std::cout << "Nao ha insumos suficientes no estoque MS." << std::endl; 
             }
             else{
-                qtdeTemp = ins->getQuantidade();
-                qtdeTemp -= quantidade;
-                
+
                 ins->setQuantidade(ins->getQuantidade() - quantidade);
-                locais[0].getInsumos()[iterator]->getQuantidade();
+
+                cout << iterator << endl;
+                if(dest.getInsumos().size()){
+                    for(Insumo *dins : dest.getInsumos()){
+                        if(dins == insumo){
+                            
+                        }
+                        
+                        iterator++;
+                    }
+                }
+                else{
+                    Insumo *nins;
+                    
+                    switch (insumo->getTipoInsumo()){
+                        case 1:
+                            nins = new Vacina(ins);
+                            break;
+                        case 2:
+                            nins = new Medicamento(ins);
+                            break;
+                        case 3:
+                            nins = new Epi(ins);
+                            break;               
+                    }
+
+                    nins->setQuantidade(quantidade);
+                    dest.setInsumo(nins);
+                }
+
                 break;
             }
             
         }
 
-        iterator++;
     }
-
-    cout << iterator << endl;
-    if(dest.getInsumos().size()){
-        for(Insumo *ins : dest.getInsumos()){
-            cout << "entrou aqui" << endl;
-        }
-    }
-    else{
-        cout << "Tem nenhum insumo no destino kkk foi boa major" << endl;
-    }
-    
+  
 }
 
 
