@@ -52,7 +52,7 @@ void Menu::exibeMenu2(){
     ct.cadastraInsumosMS(epi);
 
     ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[2], 500);
-    ct.consultaInsumos(ct.getLocal(0));
+    ct.consultaInsumos(ct.getLocal(1));
 
 }	
 

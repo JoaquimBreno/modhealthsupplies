@@ -119,11 +119,7 @@ vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 
 
 void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
-    Insumo *copia;
-    int iterator = 0;
-
-    //Verificando se há insumos suficientes:
-
+    
     for(Insumo *ins : locais[0].getInsumos()){
 
         if(ins == insumo){
@@ -132,41 +128,40 @@ void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
                 std::cout << "Nao ha insumos suficientes no estoque MS." << std::endl; 
             }
             else{
-
+                int iterator = 1;
                 ins->setQuantidade(ins->getQuantidade() - quantidade);
-
-                cout << iterator << endl;
+                
                 if(dest.getInsumos().size()){
-                    for(Insumo *dins : dest.getInsumos()){
-                        if(dins == insumo){
-                            
+                    for(Insumo *dins : dest.getInsumos()){ // Varre os insumos do destino
+                        if(dins->getNome() == insumo->getNome()){ // Verifica se o nome é igual ao insumo do MS
+                            std::cout << "chegou aqui1"<< std::endl; 
+                            dins->setQuantidade(dins->getQuantidade() + quantidade); // Soma a quantidade;
+                            break;
                         }
-                        
                         iterator++;
                     }
                 }
-                else{
-                    Insumo *nins;
-                    
+                
+                if(iterator == dest.getInsumos().size() || !dest.getInsumos().size()){ // Gera um novo insumo caso a verificação não encontrar insumos compatíveis
+    
+                    Insumo *copia;
                     switch (insumo->getTipoInsumo()){
                         case 1:
-                            nins = new Vacina(ins);
+                            copia = new Vacina(ins);
                             break;
                         case 2:
-                            nins = new Medicamento(ins);
+                            copia = new Medicamento(ins);
                             break;
                         case 3:
-                            nins = new Epi(ins);
+                            copia = new Epi(ins);
                             break;               
                     }
-
-                    nins->setQuantidade(quantidade);
-                    dest.setInsumo(nins);
-                }
-
-                break;
+                    copia->setQuantidade(quantidade);
+                    dest.setInsumo(copia);     
+                }  
             }
             
+            break;
         }
 
     }
