@@ -1,6 +1,5 @@
 #include "Menu.h"  
 
-
 using namespace std;
 
 Menu::Menu(){
@@ -11,9 +10,8 @@ Menu::~Menu(){
 
 }
 
-void Menu::exibeMenu1(Controler ct){
+int Menu::exibeMenu1(Controler &ct, StorageManager &st){
     int opcao;
-
     cout << "1 -> Cadastrar insumo" << endl;
     cout << "2 -> Consulta insumos" << endl;
     cout << "3 -> Consulta a descricao dos Insumos" << endl;
@@ -21,22 +19,30 @@ void Menu::exibeMenu1(Controler ct){
     cout << "5 -> Distribuir insumos" << endl;
     cout << "0 -> Sair" << endl;
     
+    cin >> opcao;
+    cin.ignore();
+
     switch (opcao)
     {
         case 1:
             cadastroDeInsumo(ct);
             break;
         case 2:
-            
+            consultaEstoqueLocal(ct);
             break;
         case 3:
+            consultaEstoqueDescricao(ct);
             break;
         case 4:
+            consultaInsumosTipo(ct);
             break;
         case 5:
+            distribuicao(ct);
             break;
+        case 0:
+            return 1;
     }
-    
+    return 0;
 
 }
 
@@ -59,7 +65,7 @@ void Menu::exibeMenu2(){
 
 }	
 
-void Menu::cadastroDeInsumo(Controler ct)
+void Menu::cadastroDeInsumo(Controler &ct)
 {
     char resposta;
     Insumo *insumo;
@@ -87,7 +93,7 @@ void Menu::cadastroDeInsumo(Controler ct)
 	std::string descricao;
 
 
-    system("clear");
+    system("CLS");
 
     cout << "Qual o tipo de insumo? " << endl << endl;
     
@@ -98,7 +104,7 @@ void Menu::cadastroDeInsumo(Controler ct)
     cin >> tipoInsumo;
     cin.ignore();
 
-    system("clear");
+    system("CLS");
 
     cout << "Digite o nome do insumo:" << endl;
     getline(cin, nome);
@@ -133,6 +139,7 @@ void Menu::cadastroDeInsumo(Controler ct)
             ((Vacina*)insumo)->setQuantDoses(quantDoses);
             ((Vacina*)insumo)->setIntervalo(intervalo);
             
+            
             break;
         case MEDICAMENTO:
             insumo = new Medicamento();
@@ -158,6 +165,7 @@ void Menu::cadastroDeInsumo(Controler ct)
             getline(cin, tipo);
             cout << "Digite a descricao da EPI?" << endl;
             getline(cin, descricao);
+
             
             ((Epi*)insumo)->setTipo(tipo);
             ((Epi*)insumo)->setAtDescricao(descricao);
@@ -165,6 +173,7 @@ void Menu::cadastroDeInsumo(Controler ct)
             break;
     
     }
+
 
     cout << "Tem certeza que deseja cadastrar esse insumo? s/n" << endl;
     cin >> resposta;
@@ -179,21 +188,214 @@ void Menu::cadastroDeInsumo(Controler ct)
 
 }
 
-void Menu::consultaEstoqueLocal(Controler ct, Locais loc)
+void Menu::consultaEstoqueLocal(Controler &ct)
 {
-    system("clear");
 
-    cout << "Digite o local que deseja consultar" << endl;
-    cout << "-----------------------------------" << endl;
-    cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
-            "[3] - Amapa" << endl << "[4] - Amazonas" << endl << "[5] - Bahia" << endl << "[6] - Ceara" << endl <<
-            "[7] - Distrito Federal" << endl <<"[8] - Espirito Santo" << endl << "[9] - Goias" << endl << "[10] - Maranhao" << endl << 
-            "[11] - Mato Grosso" << endl << "[12] - Mato Grosso do Sul" << endl << "[13] - Minas Gerais" << endl << 
-            "[14] - Para" << endl << "[15] - Paraiba" << endl << "[16] - Parana" << endl << "[17] - Pernambuco" << endl <<
-            "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
-            "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
-            "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
-    
+    while(1){
+        try{
+            system("CLS");
 
+            int local;
+
+            cout << "Digite o local que deseja consultar" << endl;
+            cout << "-----------------------------------" << endl;
+            cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
+                    "[3] - Amapa" << endl << "[4] - Amazonas" << endl << "[5] - Bahia" << endl << "[6] - Ceara" << endl <<
+                    "[7] - Distrito Federal" << endl <<"[8] - Espirito Santo" << endl << "[9] - Goias" << endl << "[10] - Maranhao" << endl << 
+                    "[11] - Mato Grosso" << endl << "[12] - Mato Grosso do Sul" << endl << "[13] - Minas Gerais" << endl << 
+                    "[14] - Para" << endl << "[15] - Paraiba" << endl << "[16] - Parana" << endl << "[17] - Pernambuco" << endl <<
+                    "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
+                    "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
+                    "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
+            
+
+            cin >> local;
+            if(local < 0  || local > 27){
+                throw "Local nao encontrado";
+            }
+            cin.ignore();
+            ct.consultaInsumos(ct.getLocal(local));
+        }
+        catch(char const* erro){
+            cout << erro << endl;
+        }
+
+        char resposta;
+
+        cout << "Queres continuar a consultar? s/n" << endl;
+        cin >> resposta;
+        cin.ignore();
+        
+        if(resposta == 's' || resposta == 'S'){
+            continue;
+        }else if(resposta == 'n' || resposta == 'N'){
+            break;
+        }     
+    } 
     
+}
+
+void Menu::consultaEstoqueDescricao(Controler &ct){
+
+    while(1){
+        try{
+            system("CLS");
+
+            int local;
+
+            cout << "Digite o local que deseja consultar" << endl;
+            cout << "-----------------------------------" << endl;
+            cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
+                    "[3] - Amapa" << endl << "[4] - Amazonas" << endl << "[5] - Bahia" << endl << "[6] - Ceara" << endl <<
+                    "[7] - Distrito Federal" << endl <<"[8] - Espirito Santo" << endl << "[9] - Goias" << endl << "[10] - Maranhao" << endl << 
+                    "[11] - Mato Grosso" << endl << "[12] - Mato Grosso do Sul" << endl << "[13] - Minas Gerais" << endl << 
+                    "[14] - Para" << endl << "[15] - Paraiba" << endl << "[16] - Parana" << endl << "[17] - Pernambuco" << endl <<
+                    "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
+                    "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
+                    "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
+            
+
+            cin >> local;
+            if(local < 0  || local > 27){
+                throw "Local nao encontrado";
+            }
+            cin.ignore();
+            ct.consultaInsumosDescricao(ct.getLocal(local));
+        }
+        catch(char const* erro){
+            cout << erro << endl;
+        }
+
+        char resposta;
+
+        cout << "Queres continuar a consultar? s/n" << endl;
+        cin >> resposta;
+        cin.ignore();
+        
+        if(resposta == 's' || resposta == 'S'){
+            continue;
+        }else if(resposta == 'n' || resposta == 'N'){
+            break;
+        }     
+    } 
+    
+}
+
+void Menu::consultaInsumosTipo(Controler &ct){
+
+    vector<Insumo*> insumos;
+    
+    while(1){
+        try{
+            system("CLS");
+
+            int local;
+            int tipo;
+
+            cout << "Digite o local que deseja consultar" << endl;
+            cout << "-----------------------------------" << endl;
+            cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
+                    "[3] - Amapa" << endl << "[4] - Amazonas" << endl << "[5] - Bahia" << endl << "[6] - Ceara" << endl <<
+                    "[7] - Distrito Federal" << endl <<"[8] - Espirito Santo" << endl << "[9] - Goias" << endl << "[10] - Maranhao" << endl << 
+                    "[11] - Mato Grosso" << endl << "[12] - Mato Grosso do Sul" << endl << "[13] - Minas Gerais" << endl << 
+                    "[14] - Para" << endl << "[15] - Paraiba" << endl << "[16] - Parana" << endl << "[17] - Pernambuco" << endl <<
+                    "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
+                    "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
+                    "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
+            
+
+            cin >> local;
+            cin.ignore();
+            if(local < 0  || local > 27){
+                throw "Local nao encontrado";
+            }
+
+            system("CLS");
+            
+            cout << "Digite o tipo do insumo desejado: " << endl;
+            cin >> tipo;
+            cin.ignore();
+            if( tipo < 1 || tipo > 3){
+                throw "Tipo nao encontrado";
+            }
+            
+            vector<Insumo*> insumos;    
+            insumos = ct.consultaInsumoPorTipo(ct.getLocal(local), tipo);
+
+            for(Insumo* ins : insumos){
+                ins->getDescricao();
+            }
+
+        }
+        catch(char const* erro){
+            cout << erro << endl;
+        }
+
+        char resposta;
+
+        cout << "Queres continuar a consultar? s/n" << endl;
+        cin >> resposta;
+        cin.ignore();
+        
+        if(resposta == 's' || resposta == 'S'){
+            continue;
+        }else if(resposta == 'n' || resposta == 'N'){
+            break;
+        }     
+    }  
+}
+
+void Menu::distribuicao(Controler &ct){
+    while(1){
+        try{
+            string nomeInsumo;
+            int quantidade;
+            cout << "Digite o nome do insumo que deseja mandar: " << endl;
+            getline(cin, nomeInsumo);
+            
+            int destino;
+
+
+            
+            cout << endl << "Escolha o local de destino: " << endl;
+            cout << "-----------------------------------" << endl;
+            cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
+                    "[3] - Amapa" << endl << "[4] - Amazonas" << endl << "[5] - Bahia" << endl << "[6] - Ceara" << endl <<
+                    "[7] - Distrito Federal" << endl <<"[8] - Espirito Santo" << endl << "[9] - Goias" << endl << "[10] - Maranhao" << endl << 
+                    "[11] - Mato Grosso" << endl << "[12] - Mato Grosso do Sul" << endl << "[13] - Minas Gerais" << endl << 
+                    "[14] - Para" << endl << "[15] - Paraiba" << endl << "[16] - Parana" << endl << "[17] - Pernambuco" << endl <<
+                    "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
+                    "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
+                    "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
+            cin >> destino;
+            cin.ignore();
+
+            cout << "Digite a quantidade que deseja mandar: " << endl;
+            cin >> quantidade;
+            
+
+            for(Insumo* ins : ct.getLocal(0).getInsumos()){
+                if(ins->getNome() == nomeInsumo){
+                    ct.distribuiInsumo(ct.getLocal(destino), ins, quantidade);
+                }
+                else{
+                    throw "Nao foi encontrado insumo com esse nome";
+                }
+            }
+        }catch(const char* erro){
+            cout << erro << endl;
+        }
+
+        char resposta;
+
+        cout << "Queres continuar a distribuir? s/n" << endl;
+        cin >> resposta;
+        cin.ignore();
+        
+        if(resposta == 's' || resposta == 'S'){
+            continue;
+        }else if(resposta == 'n' || resposta == 'N'){
+            break;
+        }  
+    }
 }

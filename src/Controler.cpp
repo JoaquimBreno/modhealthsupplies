@@ -100,15 +100,13 @@ void Controler::consultaInsumosDescricao(Locais loc)
 
 vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 {
-    cout << "ENTROU !" << endl;
+
     vector<Insumo*> vec;
     for(Insumo *ins : loc.getInsumos()){// For each insumo em locais
         if(ins->getTipoInsumo() == tipoInsumo){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
             vec.push_back(ins); // FAZER UMA EXCEPTION AQUI
         }
-        cout << "PASSOU!" << endl;
     }
-
     //for(unsigned int i = 0; i < vec.size(); i++){
     //    vec[i]->getDescricao();
     //}
@@ -133,8 +131,7 @@ void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
                 
                 if(dest.getInsumos().size()){
                     for(Insumo *dins : dest.getInsumos()){ // Varre os insumos do destino
-                        if(dins->getNome() == insumo->getNome()){ // Verifica se o nome é igual ao insumo do MS
-                            std::cout << "chegou aqui1"<< std::endl; 
+                        if(dins->getNome() == insumo->getNome()){ // Verifica se o nome é igual ao insumo do MS,0
                             dins->setQuantidade(dins->getQuantidade() + quantidade); // Soma a quantidade;
                             break;
                         }
@@ -158,7 +155,7 @@ void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
                     }
                     copia->setQuantidade(quantidade);
                     dest.setInsumo(copia);   
-                    delete copia;  
+                     
                 }  
             }
             

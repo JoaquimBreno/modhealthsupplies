@@ -5,8 +5,17 @@
 
 int main(void){
     setlocale(LC_ALL, "portuguese-brazilian");
-
+    StorageManager st;
+    Controler ct;
     Menu mn;
-    mn.exibeMenu2();
-    return 0;
+    while(1){
+        int retorno;
+        retorno = mn.exibeMenu1(ct, st);
+        
+        if(retorno == 1){
+            return 0;
+        }else{
+            continue;
+        }
+    }
 }
