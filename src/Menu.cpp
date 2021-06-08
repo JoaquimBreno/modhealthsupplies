@@ -350,12 +350,13 @@ void Menu::distribuicao(Controler &ct){
         try{
             string nomeInsumo;
             int quantidade;
+            int destino;
+            if(ct.getLocal(0).getInsumos().size() <= 0){
+                throw "Nao ha insumos no estoque MS";
+            }
+            
             cout << "Digite o nome do insumo que deseja mandar: " << endl;
             getline(cin, nomeInsumo);
-            
-            int destino;
-
-
             
             cout << endl << "Escolha o local de destino: " << endl;
             cout << "-----------------------------------" << endl;
@@ -372,9 +373,11 @@ void Menu::distribuicao(Controler &ct){
 
             cout << "Digite a quantidade que deseja mandar: " << endl;
             cin >> quantidade;
-            
+            cin.ignore();
 
+            cout << nomeInsumo << endl;
             for(Insumo* ins : ct.getLocal(0).getInsumos()){
+                cout << ins->getNome() << endl;
                 if(ins->getNome() == nomeInsumo){
                     ct.distribuiInsumo(ct.getLocal(destino), ins, quantidade);
                 }
