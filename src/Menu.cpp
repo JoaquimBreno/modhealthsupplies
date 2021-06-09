@@ -131,7 +131,7 @@ void Menu::cadastroDeInsumo(Controler &ct)
             cout << "Digite a quantidade de doses: " << endl;
 		    cin >> quantDoses;
             cin.ignore();
-            cout << "Digite o intervalo de doses: " << endl;
+            cout << "Digite o intervalo de doses(numero de dias): " << endl;
             cin >> intervalo;
             cin.ignore();	
 
@@ -313,6 +313,10 @@ void Menu::consultaInsumosTipo(Controler &ct){
             system("CLS");
             
             cout << "Digite o tipo do insumo desejado: " << endl;
+            cout << "[1] -> Vacina" << endl;
+            cout << "[2] -> Medicamento" << endl;
+            cout << "[3] -> Epi" << endl;
+            
             cin >> tipo;
             cin.ignore();
             if( tipo < 1 || tipo > 3){
@@ -322,6 +326,9 @@ void Menu::consultaInsumosTipo(Controler &ct){
             vector<Insumo*> insumos;    
             insumos = ct.consultaInsumoPorTipo(ct.getLocal(local), tipo);
 
+            if(insumos.size() == 0){
+                cout << "Nao ha insumos do tipo pesquisado nesse local" << endl;
+            }
             for(Insumo* ins : insumos){
                 ins->getDescricao();
             }
@@ -347,49 +354,42 @@ void Menu::consultaInsumosTipo(Controler &ct){
 
 void Menu::distribuicao(Controler &ct){
     while(1){
-        try{
-            string nomeInsumo;
-            int quantidade;
-            int destino;
-            if(ct.getLocal(0).getInsumos().size() <= 0){
-                throw "Nao ha insumos no estoque MS";
-            }
-            
-            cout << "Digite o nome do insumo que deseja mandar: " << endl;
-            getline(cin, nomeInsumo);
-            
-            cout << endl << "Escolha o local de destino: " << endl;
-            cout << "-----------------------------------" << endl;
-            cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
-                    "[3] - Amapa" << endl << "[4] - Amazonas" << endl << "[5] - Bahia" << endl << "[6] - Ceara" << endl <<
-                    "[7] - Distrito Federal" << endl <<"[8] - Espirito Santo" << endl << "[9] - Goias" << endl << "[10] - Maranhao" << endl << 
-                    "[11] - Mato Grosso" << endl << "[12] - Mato Grosso do Sul" << endl << "[13] - Minas Gerais" << endl << 
-                    "[14] - Para" << endl << "[15] - Paraiba" << endl << "[16] - Parana" << endl << "[17] - Pernambuco" << endl <<
-                    "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
-                    "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
-                    "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
-            cin >> destino;
-            cin.ignore();
-
-            cout << "Digite a quantidade que deseja mandar: " << endl;
-            cin >> quantidade;
-            cin.ignore();
-
-            cout << nomeInsumo << endl;
-            for(Insumo* ins : ct.getLocal(0).getInsumos()){
-                cout << ins->getNome() << endl;
-                if(ins->getNome() == nomeInsumo){
-                    ct.distribuiInsumo(ct.getLocal(destino), ins, quantidade);
-                }
-                else{
-                    throw "Nao foi encontrado insumo com esse nome";
-                }
-            }
-        }catch(const char* erro){
-            cout << erro << endl;
+        string nomeInsumo;
+        int quantidade;
+        int destino;
+        if(ct.getLocal(0).getInsumos().size() <= 0){
+            cout << "Nao ha insumos no estoque MS" << endl;
+            return;
         }
+        
+        cout << "Digite o nome do insumo que deseja mandar: " << endl;
+        getline(cin, nomeInsumo);
+        
+        cout << endl << "Escolha o local de destino: " << endl;
+        cout << "-----------------------------------" << endl;
+        cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
+                "[3] - Amapa" << endl << "[4] - Amazonas" << endl << "[5] - Bahia" << endl << "[6] - Ceara" << endl <<
+                "[7] - Distrito Federal" << endl <<"[8] - Espirito Santo" << endl << "[9] - Goias" << endl << "[10] - Maranhao" << endl << 
+                "[11] - Mato Grosso" << endl << "[12] - Mato Grosso do Sul" << endl << "[13] - Minas Gerais" << endl << 
+                "[14] - Para" << endl << "[15] - Paraiba" << endl << "[16] - Parana" << endl << "[17] - Pernambuco" << endl <<
+                "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
+                "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
+                "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
+        cin >> destino;
+        cin.ignore();
 
+        cout << "Digite a quantidade que deseja mandar: " << endl;
+        cin >> quantidade;
+        cin.ignore();
+
+        for(Insumo* ins : ct.getLocal(0).getInsumos()){
+            cout << ins->getNome() << endl;
+            if(ins->getNome() == nomeInsumo){
+                ct.distribuiInsumo(ct.getLocal(destino), ins, quantidade);
+            }
+        }
         char resposta;
+        system("CLS");
 
         cout << "Queres continuar a distribuir? s/n" << endl;
         cin >> resposta;
