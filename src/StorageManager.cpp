@@ -91,6 +91,7 @@ void StorageManager::lerInsumos(Locais &loc)
                 }
             }
         }
+        file.close();
     }
     else{
         cout<< "Não foi possivel abrir o arquivo!" << endl;

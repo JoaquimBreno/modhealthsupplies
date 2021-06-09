@@ -46,22 +46,26 @@ int Menu::exibeMenu1(Controler &ct, StorageManager &st){
 
 }
 
-void Menu::exibeMenu2(){
+void Menu::exibeMenu2(StorageManager &st){
     
-    Controler ct;
-    StorageManager st;
-    Insumo *vac = new Vacina();
-    Insumo *med = new Medicamento();
-    Insumo *epi = new Epi();
     
-    ct.cadastraInsumosMS(vac);
-    ct.cadastraInsumosMS(med);
-    ct.cadastraInsumosMS(epi);
 
-    //st.salvarInsumos(ct.getLocal(0).getInsumos(), ct.getLocal(0));
-    st.lerInsumos(ct.getLocal(0));
-    //ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[2], 500);
-    ct.consultaInsumos(ct.getLocal(0));
+
+    //FEITO PARA TESTES:
+        // Controler ct;
+        // StorageManager st;
+        // Insumo *vac = new Vacina();
+        // Insumo *med = new Medicamento();
+        // Insumo *epi = new Epi();
+        
+        // ct.cadastraInsumosMS(vac);
+        // ct.cadastraInsumosMS(med);
+        // ct.cadastraInsumosMS(epi);
+
+        // //st.salvarInsumos(ct.getLocal(0).getInsumos(), ct.getLocal(0));
+        // st.lerInsumos(ct.getLocal(0));
+        // //ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[2], 500);
+        // ct.consultaInsumos(ct.getLocal(0));
 
 }	
 

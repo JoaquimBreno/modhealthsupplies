@@ -25,7 +25,7 @@ class Menu
 		void consultaInsumosTipo(Controler &ct);
 		void distribuicao(Controler &ct);
 		int exibeMenu1(Controler &ct, StorageManager &st);
-		void exibeMenu2();
+		void exibeMenu2(StorageManager &st);
 
 };
 #endif
