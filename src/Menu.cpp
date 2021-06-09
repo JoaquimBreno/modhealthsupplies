@@ -10,6 +10,48 @@ Menu::~Menu(){
 
 }
 
+int Menu::exibeMenuPrincipal(Controler &ct, StorageManager &st){
+    while(1){ 
+        int opcao;
+        cout << " Escolha uma opcao de menu: " << endl;
+        cout << "-----------------------------------" << endl;
+        cout << "1 -> Menu Principal" << endl;
+        cout << "2 -> Menu Persistencia" << endl;
+        cout << "0 -> Sair" << endl;
+        
+        cin >> opcao;
+        cin.ignore();
+        system("CLS");
+        
+            switch (opcao){
+                case 1:
+                    while(1){
+                        if(exibeMenu1(ct, st)==1){
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    break;
+                case 2:
+                    while(1){
+                        if(exibeMenu2(ct, st)==1){
+                            continue;
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                    break;
+                case 0:
+                    return 0;
+            }
+            return 1;
+    }
+    
+}
+
 int Menu::exibeMenu1(Controler &ct, StorageManager &st){
     int opcao;
     cout << "1 -> Cadastrar insumo" << endl;
@@ -17,13 +59,16 @@ int Menu::exibeMenu1(Controler &ct, StorageManager &st){
     cout << "3 -> Consulta a descricao dos Insumos" << endl;
     cout << "4 -> Consulta insumos por tipo" << endl;
     cout << "5 -> Distribuir insumos" << endl;
+    cout << "6 -> Ler insumos (por local)" << endl;
+    cout << "7 -> Ler todos os locais" << endl;
+    cout << "8 -> Salvar todos os locais" << endl;
     cout << "0 -> Sair" << endl;
     
     cin >> opcao;
     cin.ignore();
-
-    switch (opcao)
-    {
+    system("CLS");
+    
+    switch (opcao){
         case 1:
             cadastroDeInsumo(ct);
             break;
@@ -39,38 +84,51 @@ int Menu::exibeMenu1(Controler &ct, StorageManager &st){
         case 5:
             distribuicao(ct);
             break;
+        case 6:
+            lerArquivoLocal(ct,st);
+            break;
+        case 7:
+            lerArquivoTotal(ct, st);
+            break;
+        case 8:
+            salvarArquivoTotal(ct,st);
+            break;
         case 0:
-            return 1;
+            return 0;
     }
-    return 0;
-
+    return 1;
 }
 
-void Menu::exibeMenu2(StorageManager &st){
+int Menu::exibeMenu2(Controler &ct, StorageManager &st){
     
+    int opcao;
+    cout << "1 -> Ler insumos (por local)" << endl;
+    cout << "2 -> Ler todos os locais" << endl;
+    cout << "3 -> Salvar todos os locais" << endl;
+    cout << "0 -> Sair" << endl;
+    cin >> opcao;
+    cin.ignore();
+    system("CLS");
+
+    switch (opcao){
+        case 1:
+            lerArquivoLocal(ct,st);
+            break;
+        case 2:
+            lerArquivoTotal(ct, st);
+            break;
+        case 3:
+            salvarArquivoTotal(ct,st);
+            break;
+        case 0:
+            return 0;
+    }
     
-
-
-    //FEITO PARA TESTES:
-        // Controler ct;
-        // StorageManager st;
-        // Insumo *vac = new Vacina();
-        // Insumo *med = new Medicamento();
-        // Insumo *epi = new Epi();
-        
-        // ct.cadastraInsumosMS(vac);
-        // ct.cadastraInsumosMS(med);
-        // ct.cadastraInsumosMS(epi);
-
-        // //st.salvarInsumos(ct.getLocal(0).getInsumos(), ct.getLocal(0));
-        // st.lerInsumos(ct.getLocal(0));
-        // //ct.distribuiInsumo(ct.getLocal(1), ct.getLocal(0).getInsumos()[2], 500);
-        // ct.consultaInsumos(ct.getLocal(0));
+    return 1;
 
 }	
 
-void Menu::cadastroDeInsumo(Controler &ct)
-{
+void Menu::cadastroDeInsumo(Controler &ct){
     char resposta;
     Insumo *insumo;
     
@@ -192,8 +250,7 @@ void Menu::cadastroDeInsumo(Controler &ct)
 
 }
 
-void Menu::consultaEstoqueLocal(Controler &ct)
-{
+void Menu::consultaEstoqueLocal(Controler &ct){
 
     while(1){
         try{
@@ -218,6 +275,8 @@ void Menu::consultaEstoqueLocal(Controler &ct)
                 throw "Local nao encontrado";
             }
             cin.ignore();
+            system("CLS");
+            
             ct.consultaInsumos(ct.getLocal(local));
         }
         catch(char const* erro){
@@ -264,6 +323,8 @@ void Menu::consultaEstoqueDescricao(Controler &ct){
                 throw "Local nao encontrado";
             }
             cin.ignore();
+            system("CLS");
+            
             ct.consultaInsumosDescricao(ct.getLocal(local));
         }
         catch(char const* erro){
@@ -310,6 +371,7 @@ void Menu::consultaInsumosTipo(Controler &ct){
 
             cin >> local;
             cin.ignore();
+            system("CLS");
             if(local < 0  || local > 27){
                 throw "Local nao encontrado";
             }
@@ -381,7 +443,8 @@ void Menu::distribuicao(Controler &ct){
                 "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
         cin >> destino;
         cin.ignore();
-
+        
+        system("CLS");
         cout << "Digite a quantidade que deseja mandar: " << endl;
         cin >> quantidade;
         cin.ignore();
@@ -406,3 +469,36 @@ void Menu::distribuicao(Controler &ct){
         }  
     }
 }
+
+void Menu::lerArquivoLocal(Controler &ct, StorageManager &st){
+    int localIndex;
+    cout << "Escolha o local que deseja ler do arquivo" << endl << endl;
+    cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
+                "[3] - Amapa" << endl << "[4] - Amazonas" << endl << "[5] - Bahia" << endl << "[6] - Ceara" << endl <<
+                "[7] - Distrito Federal" << endl <<"[8] - Espirito Santo" << endl << "[9] - Goias" << endl << "[10] - Maranhao" << endl << 
+                "[11] - Mato Grosso" << endl << "[12] - Mato Grosso do Sul" << endl << "[13] - Minas Gerais" << endl << 
+                "[14] - Para" << endl << "[15] - Paraiba" << endl << "[16] - Parana" << endl << "[17] - Pernambuco" << endl <<
+                "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
+                "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
+                "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
+    cin >> localIndex;
+    cin.ignore();
+    system("CLS");
+    
+    st.lerInsumosPorLocal(ct.getLocal(localIndex)); 
+    cout << " Funcao executada " << endl;
+}
+
+
+void Menu::lerArquivoTotal(Controler &ct, StorageManager &st){
+    st.lerInsumos(ct);
+    cout << " Funcao executada " << endl;
+}
+
+void Menu::salvarArquivoTotal(Controler &ct, StorageManager &st){
+    for( int i = 0; i < 28; i++ ){
+        st.salvarInsumos(ct.getLocal(i).getInsumos(), ct.getLocal(i));
+    }
+    cout << " Funcao executada " << endl;
+}
+

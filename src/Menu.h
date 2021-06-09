@@ -24,8 +24,12 @@ class Menu
 		void consultaEstoqueDescricao(Controler &ct);
 		void consultaInsumosTipo(Controler &ct);
 		void distribuicao(Controler &ct);
+		void lerArquivoLocal(Controler &ct, StorageManager &st);
+		void lerArquivoTotal(Controler &ct, StorageManager &st);
+		void salvarArquivoTotal(Controler &ct, StorageManager &st);
+		int exibeMenuPrincipal(Controler &ct, StorageManager &st);
 		int exibeMenu1(Controler &ct, StorageManager &st);
-		void exibeMenu2(StorageManager &st);
+		int exibeMenu2(Controler &ct, StorageManager &st);
 
 };
 #endif

@@ -4,14 +4,7 @@ using namespace std;
 	
 Epi::Epi()
 {
-    nome = "Cleitinho";
-    quantidade =  10000;
-	valorUnit = 90.5;
-	dtVencimento = "15/10/2001";
-	nomeFabricante = "Joca Cornelio";
-	tipoInsumo = EPI;
-	tipo = "Mascara P95";
-	descricao = "Tudo de bom para vc querido cliente amigo";
+    
 }
 
 Epi::Epi(Insumo *epi)
@@ -22,6 +15,7 @@ Epi::Epi(Insumo *epi)
     this->valorUnit = epi->getValorUnit();
     this->dtVencimento = epi->getDtVencimento();
     this->nomeFabricante= epi->getNomeFabricante();
+    //atributos relacionados a epi
     this->tipo = ((Epi*)epi)->getTipo();
     this->descricao = ((Epi*)epi)->getAtDescricao();
 
@@ -46,6 +40,7 @@ Epi::~Epi()
 
 void Epi::getDescricao()
 {
+    //descrição acrescentada relacionada a EPI
     Insumo::getDescricao();
     cout << "Tipo de EPI: " << tipo << endl;
     cout << "Descricao: " << descricao << endl;
@@ -73,6 +68,8 @@ void Epi::setAtDescricao(std::string desc)
 }
 
 void Epi::salvaAtributos(ofstream &file){
+
+    //adiciona ao final da linha do arquivo, oa atributos refeentes apenas a epi
     file << tipo << ",";
     file << descricao << endl;
 }

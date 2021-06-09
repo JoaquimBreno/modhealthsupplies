@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 	
-Insumo::Insumo()
+Insumo::Insumo()//construtor de insumos
 {
 	
 }
@@ -12,7 +12,7 @@ Insumo::~Insumo()
    
 }
 
-
+//get's do tipo Insumo 
 int Insumo::getTipoInsumo()
 {
     return tipoInsumo;
@@ -38,6 +38,7 @@ std::string Insumo::getNomeFabricante(){
 }
 
 void Insumo::getDescricao(){
+    //descrição fixa de todos os insumos 
     cout << "Nome: " << getNome() << endl;
     cout <<	"Quantidade: " << getQuantidade() << endl;
 	cout <<	"Valor unitario: R$ " << getValorUnit() << endl;
@@ -45,6 +46,7 @@ void Insumo::getDescricao(){
 	cout <<	"Fabricante: " << getNomeFabricante() << endl;
 }
 
+//set´s do tipo Insumo 
 void Insumo::setQuantidade(int quant)
 {
     this->quantidade = quant;

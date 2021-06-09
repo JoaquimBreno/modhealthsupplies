@@ -4,18 +4,17 @@
 #include "Menu.h"
 
 int main(void){
-    setlocale(LC_ALL, "portuguese-brazilian");
-    StorageManager st;
-    Controler ct;
-    Menu mn;
     while(1){
-        int retorno;
-        retorno = mn.exibeMenu1(ct, st);
+        StorageManager st;
+        Controler ct;
+        Menu menu;
         
-        if(retorno == 1){
+        if(menu.exibeMenuPrincipal(ct, st) == 0){
             return 0;
-        }else{
+        }
+        else{
             continue;
         }
+        
     }
 }
