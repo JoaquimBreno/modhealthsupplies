@@ -1,6 +1,7 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include <stdlib.h>
 #include <vector>
 #include <iostream>
 #include "Vacina.h"	
@@ -18,11 +19,17 @@ class Menu
 	public:
 		Menu();
 		~Menu();
-		void cadastroDeInsumo(Controler ct);
-		void consultaEstoqueLocal(Controler ct);
-		void consultaEstoqueLocal(Controler ct, Locais loc);
-		void exibeMenu1(Controler ct);
-		void exibeMenu2();
+		void cadastroDeInsumo(Controler &ct);
+		void consultaEstoqueLocal(Controler &ct);
+		void consultaEstoqueDescricao(Controler &ct);
+		void consultaInsumosTipo(Controler &ct);
+		void distribuicao(Controler &ct);
+		void lerArquivoLocal(Controler &ct, StorageManager &st);
+		void lerArquivoTotal(Controler &ct, StorageManager &st);
+		void salvarArquivoTotal(Controler &ct, StorageManager &st);
+		int exibeMenuPrincipal(Controler &ct, StorageManager &st);
+		int exibeMenu1(Controler &ct, StorageManager &st);
+		int exibeMenu2(Controler &ct, StorageManager &st);
 
 };
 #endif

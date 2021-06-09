@@ -3,15 +3,7 @@ using namespace std;
 
 Medicamento::Medicamento()
 {
-    nome = "Juliette";
-    quantidade = 0;
-    valorUnit = 150;
-    dtVencimento = "21/12/2080";
-    nomeFabricante = "Mae dela";
-    tipoInsumo = MEDICAMENTO;
-    dosagem = "18mg";
-    administracao = "Venosa";
-    disponibilizacao = "Garrafa Pet";
+    
 }
 
 Medicamento::Medicamento(Insumo *med)
@@ -22,6 +14,7 @@ Medicamento::Medicamento(Insumo *med)
     this->valorUnit = med->getValorUnit();
     this->dtVencimento = med->getDtVencimento();
     this->nomeFabricante= med->getNomeFabricante();
+    //atributos relacionados a medicamentos 
     this->dosagem = ((Medicamento*)med)->getDosagem();
     this->administracao = ((Medicamento*)med)->getAdministracao();
     this->disponibilizacao= ((Medicamento*)med)->getDisponibilizacao();
@@ -29,8 +22,8 @@ Medicamento::Medicamento(Insumo *med)
 }
 
 Medicamento::Medicamento(vector<string> atributos){
-
-    this->tipoInsumo = std::stoi(atributos[0]);    
+    //construtor que inicializa os atributos a partir de um vetor de string que vem do arquivo
+    this->tipoInsumo = std::stoi(atributos[0]);   
     this->nome = atributos[1];
     this->quantidade = std::stol(atributos[2], nullptr, 10);
     this->valorUnit = std::stod(atributos[3]);
@@ -46,8 +39,10 @@ Medicamento::~Medicamento()
 	
 }
 
+//Descriçaõ relacionada a medicamentos
 void Medicamento::getDescricao()
 {
+    //acrescimo da descrição relacionada a medicamento
     Insumo::getDescricao();
     cout << "Dosagem: " << dosagem << endl;
     cout << "Administracao: " << administracao << endl;
@@ -88,6 +83,7 @@ void Medicamento::setDisponibilizacao(std::string disp)
 
 void Medicamento::salvaAtributos(ofstream &file)
 {
+    //adiciona ao final da linha do arquivo, os atributos referentes apenas aos medicamentos, seguido por virgulas.
     file << dosagem << ",";
     file << administracao <<",";
     file << disponibilizacao << endl;

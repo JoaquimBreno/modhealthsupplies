@@ -4,15 +4,7 @@ using namespace std;
 
 Vacina::Vacina()
 {
-	nome = "Lepo Lepo";
-    quantidade = 10000;
-    quantDoses = 10;
-    tipoInsumo = VACINA;
-    valorUnit = 21;
-    dtVencimento = "12/12/2012";
-    nomeFabricante= "Rastafari";
-    tipoVac = "Vacina de cerdas";
-    intervalo = 15;
+	
 }
 
 Vacina::Vacina(Insumo *vac){
@@ -23,6 +15,7 @@ Vacina::Vacina(Insumo *vac){
     this->valorUnit = vac->getValorUnit();
     this->dtVencimento = vac->getDtVencimento();
     this->nomeFabricante= vac->getNomeFabricante();
+    //atributos referentes apenas a vacina
     this->tipoVac = ((Vacina*)vac)->getTipoVac();
     this->quantDoses = ((Vacina*)vac)->getQuantDoses();
     this->intervalo = ((Vacina*)vac)->getIntervalo();
@@ -30,6 +23,7 @@ Vacina::Vacina(Insumo *vac){
 }
 
 Vacina::Vacina(vector<string> atributos){
+    //construtor que inicializa os atributos a partir de um vetor de string que vem do arquivo
     this->tipoInsumo = std::stoi(atributos[0]);    
     this->nome = atributos[1];
     this->quantidade = std::stol(atributos[2], nullptr, 10);
@@ -48,6 +42,7 @@ Vacina::~Vacina()
 
 void Vacina::getDescricao() 
 {
+    //acrescimo da descrição relacionada a Vacina
     Insumo::getDescricao();
     cout << "Quantidade de doses: " << quantDoses << endl;
     cout << "Tipo da vacina: " << tipoVac << endl;
@@ -87,6 +82,7 @@ void Vacina::setIntervalo(int intervalo)
 }
 
 void Vacina::salvaAtributos(ofstream &file){
+    //adiciona ao final da linha do arquivo, os atributos referentes apenas as vacinas, seguido por virgulas.
     file << tipoVac << ",";
     file << quantDoses << ",";
     file << intervalo << endl;

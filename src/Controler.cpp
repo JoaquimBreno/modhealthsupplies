@@ -100,15 +100,13 @@ void Controler::consultaInsumosDescricao(Locais loc)
 
 vector <Insumo*> Controler::consultaInsumoPorTipo(Locais loc, int tipoInsumo)
 {
-    cout << "ENTROU !" << endl;
+
     vector<Insumo*> vec;
     for(Insumo *ins : loc.getInsumos()){// For each insumo em locais
         if(ins->getTipoInsumo() == tipoInsumo){ // Pega o tipo do Insumo e verifica se é igual ao insumo definido como VACINA
             vec.push_back(ins); // FAZER UMA EXCEPTION AQUI
         }
-        cout << "PASSOU!" << endl;
     }
-
     //for(unsigned int i = 0; i < vec.size(); i++){
     //    vec[i]->getDescricao();
     //}
@@ -123,26 +121,27 @@ void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
     for(Insumo *ins : locais[0].getInsumos()){
 
         if(ins == insumo){
-
+            bool validator = false;
+            
             if(ins->getQuantidade() < quantidade){
                 std::cout << "Nao ha insumos suficientes no estoque MS." << std::endl; 
             }
             else{
-                int iterator = 1;
+                
                 ins->setQuantidade(ins->getQuantidade() - quantidade);
                 
                 if(dest.getInsumos().size()){
                     for(Insumo *dins : dest.getInsumos()){ // Varre os insumos do destino
-                        if(dins->getNome() == insumo->getNome()){ // Verifica se o nome é igual ao insumo do MS
-                            std::cout << "chegou aqui1"<< std::endl; 
+                        if(dins->getNome() == insumo->getNome()){ // Verifica se o nome é igual ao insumo do MS,0
                             dins->setQuantidade(dins->getQuantidade() + quantidade); // Soma a quantidade;
+                            validator = true;
                             break;
                         }
-                        iterator++;
+                        
                     }
                 }
                 
-                if(iterator == dest.getInsumos().size() || !dest.getInsumos().size()){ // Gera um novo insumo caso a verificação não encontrar insumos compatíveis
+                if(!validator || !dest.getInsumos().size()){ // Gera um novo insumo caso a verificação não encontrar insumos compatíveis
     
                     Insumo *copia;
                     switch (insumo->getTipoInsumo()){
@@ -158,7 +157,7 @@ void Controler::distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade){
                     }
                     copia->setQuantidade(quantidade);
                     dest.setInsumo(copia);   
-                    delete copia;  
+                     
                 }  
             }
             
