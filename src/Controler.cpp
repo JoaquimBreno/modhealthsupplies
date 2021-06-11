@@ -19,6 +19,10 @@ Controler::~Controler()
 	
 }
 
+Locais *Controler::getLocais(){
+    return locais;
+}
+
 void Controler::cadastraInsumosMS(Insumo *insFilho)
 {   
     //No local MS, coloca no array de Insumos o insumo "insFilho"

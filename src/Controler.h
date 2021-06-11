@@ -21,6 +21,7 @@ class Controler
 		void distribuiInsumo(Locais &dest, Insumo *insumo, long quantidade);
 		void delecaoDeInsumo(Locais &loc);
 		Locais & getLocal(int index);
+		Locais *getLocais();
 		
 		Controler();
 		~Controler();

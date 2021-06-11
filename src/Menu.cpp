@@ -13,10 +13,11 @@ Menu::~Menu(){
 int Menu::exibeMenuPrincipal(Controler &ct, StorageManager &st){
     while(1){ 
         int opcao;
+        cout << " GERENCIADOR DE INSUMOS MS " << endl;
+        cout << "-----------------------------------" << endl;
         cout << " Escolha uma opcao de menu: " << endl;
         cout << "-----------------------------------" << endl;
         cout << "1 -> Menu Principal" << endl;
-        cout << "2 -> Menu Persistencia" << endl;
         cout << "0 -> Sair" << endl;
         
         cin >> opcao;
@@ -25,19 +26,11 @@ int Menu::exibeMenuPrincipal(Controler &ct, StorageManager &st){
         
             switch (opcao){
                 case 1:
+                    st.lerInsumos(ct);
                     while(1){
                         if(exibeMenu1(ct, st)==1){
                             continue;
-                        }
-                        else{
-                            break;
-                        }
-                    }
-                    break;
-                case 2:
-                    while(1){
-                        if(exibeMenu2(ct, st)==1){
-                            continue;
+                            st.salvarInsumos(ct);
                         }
                         else{
                             break;
@@ -59,9 +52,7 @@ int Menu::exibeMenu1(Controler &ct, StorageManager &st){
     cout << "3 -> Consulta a descricao dos Insumos" << endl;
     cout << "4 -> Consulta insumos por tipo" << endl;
     cout << "5 -> Distribuir insumos" << endl;
-    cout << "6 -> Ler insumos (por local)" << endl;
-    cout << "7 -> Ler todos os locais" << endl;
-    cout << "8 -> Salvar todos os locais" << endl;
+    cout << "6 -> Salvar todos os locais" << endl;
     cout << "0 -> Sair" << endl;
     
     cin >> opcao;
@@ -85,12 +76,6 @@ int Menu::exibeMenu1(Controler &ct, StorageManager &st){
             distribuicao(ct);
             break;
         case 6:
-            lerArquivoLocal(ct,st);
-            break;
-        case 7:
-            lerArquivoTotal(ct, st);
-            break;
-        case 8:
             salvarArquivoTotal(ct,st);
             break;
         case 0:
@@ -98,35 +83,6 @@ int Menu::exibeMenu1(Controler &ct, StorageManager &st){
     }
     return 1;
 }
-
-int Menu::exibeMenu2(Controler &ct, StorageManager &st){
-    
-    int opcao;
-    cout << "1 -> Ler insumos (por local)" << endl;
-    cout << "2 -> Ler todos os locais" << endl;
-    cout << "3 -> Salvar todos os locais" << endl;
-    cout << "0 -> Sair" << endl;
-    cin >> opcao;
-    cin.ignore();
-    system("CLS");
-
-    switch (opcao){
-        case 1:
-            lerArquivoLocal(ct,st);
-            break;
-        case 2:
-            lerArquivoTotal(ct, st);
-            break;
-        case 3:
-            salvarArquivoTotal(ct,st);
-            break;
-        case 0:
-            return 0;
-    }
-    
-    return 1;
-
-}	
 
 void Menu::cadastroDeInsumo(Controler &ct){
     char resposta;
@@ -228,7 +184,6 @@ void Menu::cadastroDeInsumo(Controler &ct){
             cout << "Digite a descricao da EPI?" << endl;
             getline(cin, descricao);
 
-            
             ((Epi*)insumo)->setTipo(tipo);
             ((Epi*)insumo)->setAtDescricao(descricao);
 
@@ -496,8 +451,11 @@ void Menu::lerArquivoTotal(Controler &ct, StorageManager &st){
 }
 
 void Menu::salvarArquivoTotal(Controler &ct, StorageManager &st){
-    for( int i = 0; i < 28; i++ ){
-        st.salvarInsumos(ct.getLocal(i).getInsumos(), ct.getLocal(i));
+    try{
+        st.salvarInsumos(ct);
+    }
+    catch(std::exception){
+        cout << " Ocorreu um inesperado " << endl;
     }
     cout << " Funcao executada " << endl;
 }

@@ -8,7 +8,6 @@ main: src/main.cpp dep.o
 
 run: main
 	rm *.o
-	clear
 	./main.exe
 	
 

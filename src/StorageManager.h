@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <sstream>
+#include <exception>
 #include "Controler.h"
 #include "Insumo.h"
 #include "Vacina.h"
@@ -19,7 +20,7 @@ class StorageManager
 	public:
 		StorageManager();
 		void lerInsumosPorLocal(Locais &loc);
-		void salvarInsumos(std::vector<Insumo*> ins, Locais loc);
+		void salvarInsumos(Controler &ct);
 		void lerInsumos(Controler &ct);
 
 };

@@ -29,7 +29,6 @@ class Menu
 		void salvarArquivoTotal(Controler &ct, StorageManager &st);
 		int exibeMenuPrincipal(Controler &ct, StorageManager &st);
 		int exibeMenu1(Controler &ct, StorageManager &st);
-		int exibeMenu2(Controler &ct, StorageManager &st);
 
 };
 #endif
