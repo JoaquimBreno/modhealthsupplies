@@ -26,11 +26,11 @@ int Menu::exibeMenuPrincipal(Controler &ct, StorageManager &st){
         
             switch (opcao){
                 case 1:
-                    st.lerInsumos(ct);
+                    lerArquivoTotal(ct,st);
                     while(1){
                         if(exibeMenu1(ct, st)==1){
                             continue;
-                            st.salvarInsumos(ct);
+                            salvarArquivoTotal(ct,st);
                         }
                         else{
                             break;
@@ -424,26 +424,6 @@ void Menu::distribuicao(Controler &ct){
         }  
     }
 }
-
-void Menu::lerArquivoLocal(Controler &ct, StorageManager &st){
-    int localIndex;
-    cout << "Escolha o local que deseja ler do arquivo" << endl << endl;
-    cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
-                "[3] - Amapa" << endl << "[4] - Amazonas" << endl << "[5] - Bahia" << endl << "[6] - Ceara" << endl <<
-                "[7] - Distrito Federal" << endl <<"[8] - Espirito Santo" << endl << "[9] - Goias" << endl << "[10] - Maranhao" << endl << 
-                "[11] - Mato Grosso" << endl << "[12] - Mato Grosso do Sul" << endl << "[13] - Minas Gerais" << endl << 
-                "[14] - Para" << endl << "[15] - Paraiba" << endl << "[16] - Parana" << endl << "[17] - Pernambuco" << endl <<
-                "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
-                "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
-                "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
-    cin >> localIndex;
-    cin.ignore();
-    system("CLS");
-    
-    st.lerInsumosPorLocal(ct.getLocal(localIndex)); 
-    cout << " Funcao executada " << endl;
-}
-
 
 void Menu::lerArquivoTotal(Controler &ct, StorageManager &st){
     st.lerInsumos(ct);

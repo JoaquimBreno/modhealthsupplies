@@ -19,7 +19,6 @@ class StorageManager
 
 	public:
 		StorageManager();
-		void lerInsumosPorLocal(Locais &loc);
 		void salvarInsumos(Controler &ct);
 		void lerInsumos(Controler &ct);
 

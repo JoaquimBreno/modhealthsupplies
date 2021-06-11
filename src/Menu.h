@@ -24,7 +24,6 @@ class Menu
 		void consultaEstoqueDescricao(Controler &ct);
 		void consultaInsumosTipo(Controler &ct);
 		void distribuicao(Controler &ct);
-		void lerArquivoLocal(Controler &ct, StorageManager &st);
 		void lerArquivoTotal(Controler &ct, StorageManager &st);
 		void salvarArquivoTotal(Controler &ct, StorageManager &st);
 		int exibeMenuPrincipal(Controler &ct, StorageManager &st);
