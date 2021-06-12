@@ -1,6 +1,7 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include <cctype>
 #include <stdlib.h>
 #include <vector>
 #include <iostream>

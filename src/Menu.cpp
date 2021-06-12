@@ -1,4 +1,4 @@
-#include "Menu.h"  
+#include "Menu.h" 
 
 using namespace std;
 
@@ -12,7 +12,7 @@ Menu::~Menu(){
 
 int Menu::exibeMenuPrincipal(Controler &ct, StorageManager &st){
     while(1){ 
-        int opcao;
+        char opcao;
         cout << " GERENCIADOR DE INSUMOS MS " << endl;
         cout << "-----------------------------------" << endl;
         cout << " Escolha uma opcao de menu: " << endl;
@@ -22,31 +22,37 @@ int Menu::exibeMenuPrincipal(Controler &ct, StorageManager &st){
         
         cin >> opcao;
         cin.ignore();
+        fflush(stdin);
+
         system("CLS");
         
-            switch (opcao){
-                case 1:
-                    lerArquivoTotal(ct,st);
-                    while(1){
-                        if(exibeMenu1(ct, st)==1){
-                            continue;
-                            salvarArquivoTotal(ct,st);
-                        }
-                        else{
-                            break;
-                        }
+        
+        switch (opcao){
+            case '1':
+                lerArquivoTotal(ct,st);
+                while(1){
+                    if(exibeMenu1(ct, st)==1){
+                        continue;
+                        salvarArquivoTotal(ct,st);
                     }
-                    break;
-                case 0:
-                    return 0;
-            }
-            return 1;
+                    else{
+                        break;
+                    }
+                }
+                break;
+            case '0':
+                return 0;
+            default:
+                cout << endl << "Opcao invalida, digite uma opcao valida!" << endl << endl;
+                break;
+        }
+        return 1;
     }
     
 }
 
 int Menu::exibeMenu1(Controler &ct, StorageManager &st){
-    int opcao;
+    char opcao; //tratamento de erro 
     cout << "1 -> Cadastrar insumo" << endl;
     cout << "2 -> Consulta insumos" << endl;
     cout << "3 -> Consulta a descricao dos Insumos" << endl;
@@ -57,29 +63,33 @@ int Menu::exibeMenu1(Controler &ct, StorageManager &st){
     
     cin >> opcao;
     cin.ignore();
+    fflush(stdin);
     system("CLS");
     
     switch (opcao){
-        case 1:
+        case '1':
             cadastroDeInsumo(ct);
             break;
-        case 2:
+        case '2':
             consultaEstoqueLocal(ct);
             break;
-        case 3:
+        case '3':
             consultaEstoqueDescricao(ct);
             break;
-        case 4:
+        case '4':
             consultaInsumosTipo(ct);
             break;
-        case 5:
+        case '5':
             distribuicao(ct);
             break;
-        case 6:
+        case '6':
             salvarArquivoTotal(ct,st);
             break;
-        case 0:
+        case '0':
             return 0;
+        default:
+            cout << endl << "Opcao invalida, digite uma opcao valida!" << endl << endl;
+            break;
     }
     return 1;
 }
@@ -123,6 +133,11 @@ void Menu::cadastroDeInsumo(Controler &ct){
     cin.ignore();
 
     system("CLS");
+
+    if(tipoInsumo != 1 && tipoInsumo != 2 && tipoInsumo != 3){
+        cout << endl << "Tipo de insumo nao valido!" << endl << endl;
+        return;
+    }
 
     cout << "Digite o nome do insumo:" << endl;
     getline(cin, nome);
@@ -427,7 +442,7 @@ void Menu::distribuicao(Controler &ct){
 
 void Menu::lerArquivoTotal(Controler &ct, StorageManager &st){
     st.lerInsumos(ct);
-    cout << " Funcao executada " << endl;
+    
 }
 
 void Menu::salvarArquivoTotal(Controler &ct, StorageManager &st){
