@@ -226,7 +226,8 @@ void Menu::consultaEstoqueLocal(Controler &ct){
         try{
             system("CLS");
 
-            int local;
+            string s;
+            int indexLocal;
 
             cout << "Digite o local que deseja consultar" << endl;
             cout << "-----------------------------------" << endl;
@@ -238,16 +239,27 @@ void Menu::consultaEstoqueLocal(Controler &ct){
                     "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
                     "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
                     "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
+        
             
-
-            cin >> local;
-            if(local < 0  || local > 27){
-                throw "Local nao encontrado";
+            cin >> s;
+            
+            char *end;
+            long i = strtol( s.c_str(), &end, 10 );
+            if ( *end == '\0' )
+            {
+                indexLocal = stoi(s);
+                if(indexLocal < 0  || indexLocal > 27){
+                    throw "Local nao encontrado";
+                }
             }
-            cin.ignore();
+            else
+            {
+                cout << "Digite um local valido" << endl;
+                return;
+            }
             system("CLS");
             
-            ct.consultaInsumos(ct.getLocal(local));
+            ct.consultaInsumos(ct.getLocal(indexLocal));
         }
         catch(char const* erro){
             cout << erro << endl;
@@ -262,6 +274,7 @@ void Menu::consultaEstoqueLocal(Controler &ct){
         if(resposta == 's' || resposta == 'S'){
             continue;
         }else if(resposta == 'n' || resposta == 'N'){
+            system("CLS");
             break;
         }     
     } 
@@ -271,10 +284,11 @@ void Menu::consultaEstoqueLocal(Controler &ct){
 void Menu::consultaEstoqueDescricao(Controler &ct){
 
     while(1){
-        try{
+       try{
             system("CLS");
 
-            int local;
+            string s;
+            int indexLocal;
 
             cout << "Digite o local que deseja consultar" << endl;
             cout << "-----------------------------------" << endl;
@@ -286,16 +300,27 @@ void Menu::consultaEstoqueDescricao(Controler &ct){
                     "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
                     "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
                     "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
+        
             
-
-            cin >> local;
-            if(local < 0  || local > 27){
-                throw "Local nao encontrado";
+            cin >> s;
+            
+            char *end;
+            long i = strtol( s.c_str(), &end, 10 );
+            if ( *end == '\0' )
+            {
+                indexLocal = stoi(s);
+                if(indexLocal < 0  || indexLocal > 27){
+                    throw "Local nao encontrado";
+                }
             }
-            cin.ignore();
+            else
+            {
+                cout << "Digite um local válido" << endl;
+                return;
+            }
             system("CLS");
             
-            ct.consultaInsumosDescricao(ct.getLocal(local));
+            ct.consultaInsumosDescricao(ct.getLocal(indexLocal));
         }
         catch(char const* erro){
             cout << erro << endl;
@@ -310,6 +335,7 @@ void Menu::consultaEstoqueDescricao(Controler &ct){
         if(resposta == 's' || resposta == 'S'){
             continue;
         }else if(resposta == 'n' || resposta == 'N'){
+            system("CLS");
             break;
         }     
     } 
@@ -323,7 +349,8 @@ void Menu::consultaInsumosTipo(Controler &ct){
     while(1){
         try{
             system("CLS");
-
+            
+            string s;
             int local;
             int tipo;
 
@@ -339,11 +366,21 @@ void Menu::consultaInsumosTipo(Controler &ct){
                     "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
             
 
-            cin >> local;
-            cin.ignore();
-            system("CLS");
-            if(local < 0  || local > 27){
-                throw "Local nao encontrado";
+            cin >> s;
+            
+            char *end;
+            long i = strtol( s.c_str(), &end, 10 );
+            if ( *end == '\0' )
+            {
+                local = stoi(s);
+                if(local < 0  || local > 27){
+                    throw "Local nao encontrado";
+                }
+            }
+            else
+            {
+                cout << "Digite um local valido" << endl;
+                return;
             }
 
             system("CLS");
@@ -383,6 +420,7 @@ void Menu::consultaInsumosTipo(Controler &ct){
         if(resposta == 's' || resposta == 'S'){
             continue;
         }else if(resposta == 'n' || resposta == 'N'){
+            system("CLS");
             break;
         }     
     }  
@@ -390,43 +428,62 @@ void Menu::consultaInsumosTipo(Controler &ct){
 
 void Menu::distribuicao(Controler &ct){
     while(1){
-        string nomeInsumo;
-        int quantidade;
-        int destino;
-        if(ct.getLocal(0).getInsumos().size() <= 0){
-            cout << "Nao ha insumos no estoque MS" << endl;
-            return;
-        }
+        try{
+            string s;
+            string nomeInsumo;
+            int quantidade;
+            int destino;
+            if(ct.getLocal(0).getInsumos().size() <= 0){
+                cout << "Nao ha insumos no estoque MS" << endl;
+                return;
+            }
+            
+            cout << "Digite o nome do insumo que deseja mandar: " << endl;
+            getline(cin, nomeInsumo);
+            
+            cout << endl << "Escolha o local de destino: " << endl;
+            cout << "-----------------------------------" << endl;
+            cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
+                    "[3] - Amapa" << endl << "[4] - Amazonas" << endl << "[5] - Bahia" << endl << "[6] - Ceara" << endl <<
+                    "[7] - Distrito Federal" << endl <<"[8] - Espirito Santo" << endl << "[9] - Goias" << endl << "[10] - Maranhao" << endl << 
+                    "[11] - Mato Grosso" << endl << "[12] - Mato Grosso do Sul" << endl << "[13] - Minas Gerais" << endl << 
+                    "[14] - Para" << endl << "[15] - Paraiba" << endl << "[16] - Parana" << endl << "[17] - Pernambuco" << endl <<
+                    "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
+                    "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
+                    "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
+            cin >> s;
+            
+            char *end;
+            long i = strtol( s.c_str(), &end, 10 );
+            if ( *end == '\0' )
+            {
+                destino = stoi(s);
+                if(destino < 0  || destino > 27){
+                    system("CLS");
+                    throw "Local nao encontrado";
+                }
+            }
+            else
+            {
+                cout << "Digite um local valido" << endl;
+                return;
+            }
         
-        cout << "Digite o nome do insumo que deseja mandar: " << endl;
-        getline(cin, nomeInsumo);
-        
-        cout << endl << "Escolha o local de destino: " << endl;
-        cout << "-----------------------------------" << endl;
-        cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
-                "[3] - Amapa" << endl << "[4] - Amazonas" << endl << "[5] - Bahia" << endl << "[6] - Ceara" << endl <<
-                "[7] - Distrito Federal" << endl <<"[8] - Espirito Santo" << endl << "[9] - Goias" << endl << "[10] - Maranhao" << endl << 
-                "[11] - Mato Grosso" << endl << "[12] - Mato Grosso do Sul" << endl << "[13] - Minas Gerais" << endl << 
-                "[14] - Para" << endl << "[15] - Paraiba" << endl << "[16] - Parana" << endl << "[17] - Pernambuco" << endl <<
-                "[18] - Piaui" << endl << "[19] - Rio de Janeiro" << endl<< "[20] - Rio Grande do Norte" << endl <<
-                "[21] - Rio Grande do Sul" << endl << "[22] - Rondonia" << endl << "[23] - Roraima" << endl <<
-                "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
-        cin >> destino;
-        cin.ignore();
-        
-        system("CLS");
-        cout << "Digite a quantidade que deseja mandar: " << endl;
-        cin >> quantidade;
-        cin.ignore();
+            cout << "Digite a quantidade que deseja mandar: " << endl;
+            cin >> quantidade;
+            cin.ignore();
 
-        for(Insumo* ins : ct.getLocal(0).getInsumos()){
-            cout << ins->getNome() << endl;
-            if(ins->getNome() == nomeInsumo){
-                ct.distribuiInsumo(ct.getLocal(destino), ins, quantidade);
+            for(Insumo* ins : ct.getLocal(0).getInsumos()){
+                cout << ins->getNome() << endl;
+                if(ins->getNome() == nomeInsumo){
+                    ct.distribuiInsumo(ct.getLocal(destino), ins, quantidade);
+                }
             }
         }
+        catch(char const* erro){
+            cout << erro << endl;
+        }
         char resposta;
-        system("CLS");
 
         cout << "Queres continuar a distribuir? s/n" << endl;
         cin >> resposta;
@@ -437,6 +494,7 @@ void Menu::distribuicao(Controler &ct){
         }else if(resposta == 'n' || resposta == 'N'){
             break;
         }  
+        
     }
 }
 
