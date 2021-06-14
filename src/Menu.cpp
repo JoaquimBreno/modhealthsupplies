@@ -34,9 +34,8 @@ int Menu::exibeMenuPrincipal(Controler &ct, StorageManager &st){
                 lerArquivoTotal(ct,st);
                 while(1){
                     if(exibeMenu1(ct, st)==1){
-                        //enquanto estivar no menu, ele irá continuar
+                        salvarArquivoTotal(ct,st);  //Se sair do Menu 1 salva todas as alterações de maneira obrigatória
                         continue;
-                        salvarArquivoTotal(ct,st);
                     }
                     else{
                         break;
@@ -58,7 +57,7 @@ int Menu::exibeMenuPrincipal(Controler &ct, StorageManager &st){
 }
 
 int Menu::exibeMenu1(Controler &ct, StorageManager &st){
-    char opcao; //tratamento de erro 
+    char opcao;
     //tela de interação com o usuario, relacionada ao menu 1
     cout << "1 -> Cadastrar insumo" << endl;
     cout << "2 -> Consulta insumos" << endl;
@@ -94,7 +93,7 @@ int Menu::exibeMenu1(Controler &ct, StorageManager &st){
             break;
         case '0':
             return 0;
-        default:
+        default: //tratamento de erro 
             cout << endl << "Opcao invalida, digite uma opcao valida!" << endl << endl;
             break;
     }
@@ -129,8 +128,8 @@ void Menu::cadastroDeInsumo(Controler &ct){
 
 
     system("CLS");
-//tela de interação do usuário, relacionada ao cadastro de insumo
-    cout << "Qual o tipo de insumo? " << endl << endl;
+    //tela de interação do usuário, relacionada ao cadastro de insumo
+    cout << "Qual o tipo de insumo? " << endl;
     
     cout << "1 -> VACINA" << endl;
     cout << "2 -> MEDICAMENTO" << endl;
@@ -141,11 +140,13 @@ void Menu::cadastroDeInsumo(Controler &ct){
 
     system("CLS");
 
+    //Tratamento de erros
     if(tipoInsumo != 1 && tipoInsumo != 2 && tipoInsumo != 3){
         cout << endl << "Tipo de insumo nao valido!" << endl << endl;
         return;
     }
-//interação fixa, independente do tipo de insumo escolhido
+
+    //Interação fixa, independente do tipo de insumo escolhido
     cout << "Digite o nome do insumo:" << endl;
     getline(cin, nome);
     cout << "Digite a quantidade desse insumo:" << endl;
@@ -159,7 +160,7 @@ void Menu::cadastroDeInsumo(Controler &ct){
     cout << "Digite o nome do fabricante desse insumo:" << endl;
     getline(cin, nomeFabricante);
    
-//condição para os tipos de insumo
+    //Switch para os tipos de insumo
     switch(tipoInsumo){
 
         case VACINA:
@@ -280,7 +281,7 @@ void Menu::consultaEstoqueLocal(Controler &ct){
         cout << "Queres continuar a consultar? s/n" << endl;
         cin >> resposta;
         cin.ignore();
-        //condição de consulta 
+        //condição de confirmação 
         if(resposta == 's' || resposta == 'S'){
             continue;
         }else if(resposta == 'n' || resposta == 'N'){
@@ -297,9 +298,10 @@ void Menu::consultaEstoqueDescricao(Controler &ct){
        try{
             system("CLS");
 
-            string s;
+            string s;   //string que recebe a entrada do usuário
             int indexLocal;
 
+            //Interface de interação
             cout << "Digite o local que deseja consultar" << endl;
             cout << "-----------------------------------" << endl;
             cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
@@ -314,10 +316,13 @@ void Menu::consultaEstoqueDescricao(Controler &ct){
             
             cin >> s;
             
+            //(Tratamento de erros)
+            //Condições que verificam se o usuário digitou apenas números
             char *end;
             long i = strtol( s.c_str(), &end, 10 );
             if ( *end == '\0' )
             {
+                //Se digitou apenas números, transforma em inteiro e verifica se é um local valido
                 indexLocal = stoi(s);
                 if(indexLocal < 0  || indexLocal > 27){
                     throw "Local nao encontrado";
@@ -330,7 +335,7 @@ void Menu::consultaEstoqueDescricao(Controler &ct){
             }
             system("CLS");
             
-            ct.consultaInsumosDescricao(ct.getLocal(indexLocal));
+            ct.consultaInsumosDescricao(ct.getLocal(indexLocal)); //Chama a função de consulta
         }
         catch(char const* erro){
             cout << erro << endl;
@@ -338,6 +343,7 @@ void Menu::consultaEstoqueDescricao(Controler &ct){
 
         char resposta;
 
+        //Verifica se o usuário deseja continuar a consultar
         cout << "Queres continuar a consultar? s/n" << endl;
         cin >> resposta;
         cin.ignore();
@@ -360,10 +366,11 @@ void Menu::consultaInsumosTipo(Controler &ct){
         try{
             system("CLS");
             
-            string s;
+            string s;       //string que recebe a entrada do usuário
             int local;
             int tipo;
-
+            
+            //Interface de interação
             cout << "Digite o local que deseja consultar" << endl;
             cout << "-----------------------------------" << endl;
             cout << "[0] - Ministerio da Saude" << endl << "[1] - Acre" << endl << "[2] - Alagoas" << endl <<
@@ -378,10 +385,13 @@ void Menu::consultaInsumosTipo(Controler &ct){
 
             cin >> s;
             
+            //(Tratamento de erros)
+            //Condições que verificam se o usuário digitou apenas números
             char *end;
             long i = strtol( s.c_str(), &end, 10 );
             if ( *end == '\0' )
             {
+                //Se digitou apenas números, transforma em inteiro e verifica se é um local valido
                 local = stoi(s);
                 if(local < 0  || local > 27){
                     throw "Local nao encontrado";
@@ -468,10 +478,13 @@ void Menu::distribuicao(Controler &ct){
                     "[24] - Santa Catarina" << endl << "[25] - Sao Paulo" << endl << "[26] - Sergipe" << endl <<"[27] - Tocantins" << endl; 
             cin >> s;
             
+            //(Tratamento de erros)
+            //Condições que verificam se o usuário digitou apenas números
             char *end;
             long i = strtol( s.c_str(), &end, 10 );
             if ( *end == '\0' )
             {
+                //Se digitou apenas números, transforma em inteiro e verifica se é um destino valido
                 destino = stoi(s);
                 if(destino < 0  || destino > 27){
                     system("CLS");
@@ -487,7 +500,7 @@ void Menu::distribuicao(Controler &ct){
             cout << "Digite a quantidade que deseja mandar: " << endl;
             cin  >> quantidade;
             cin.ignore();
-            //for para fistribuir os insumos 
+            //for para distribuição os insumos 
             for(Insumo* ins : ct.getLocal(0).getInsumos()){
                 if(ins->getNome() == nomeInsumo){
                     ct.distribuiInsumo(ct.getLocal(destino), ins, quantidade);
@@ -511,11 +524,13 @@ void Menu::distribuicao(Controler &ct){
         
     }
 }
+
 //função para ler todos os arquivos 
 void Menu::lerArquivoTotal(Controler &ct, StorageManager &st){
     st.lerInsumos(ct);
     
 }
+
 //função para salvar todos os arquivos 
 void Menu::salvarArquivoTotal(Controler &ct, StorageManager &st){
     try{

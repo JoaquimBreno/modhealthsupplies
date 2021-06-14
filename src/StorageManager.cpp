@@ -9,7 +9,7 @@ StorageManager::StorageManager()
 void StorageManager::lerInsumos(Controler &ct)
 {
     ifstream file;
-    file.open("Estoque.csv", fstream::in); //abrir arquivo csv
+    file.open("Estoque.csv", fstream::in); //abrir arquivo csv para leitura
     
     if(file.is_open()){
         bool existeInsumo = false;
@@ -35,19 +35,20 @@ void StorageManager::lerInsumos(Controler &ct)
                         getline(linhaInsumo, palavra, ',');
                         
                         try{
-                            if(i==0){ // Verifica se a primeira palavra contém o index do local escolhido
+                            if(i==0){ // Transforma a primeira palavra no index do local 
                                 local = stoi(palavra);
                             }
-                            if(i!=0){ // Verifica se a primeira palavra da linha tem o mesmo index do local
+                            if(i!=0){ 
                                 
                                 if(!existeInsumo){
-                                    //condição para deletar todos os insumos
+                                    //condição para deletar todos os insumos de todos os locais
                                     for( int i = 0; i < 28; i ++){
                                         ct.getLocal(i).deletaTodosInsumos();
                                     }
                                     existeInsumo = true;
                                 }
-                                //
+                                //Esse switch muda o numero de iterações de acordo com a quantidade de atributos
+                                //referentes ao tipo de insumo daquela linha
                                 if(i==1){
                                     switch(stoi(palavra)){
                                         
@@ -62,20 +63,18 @@ void StorageManager::lerInsumos(Controler &ct)
                                             break;
                                     }
                                 }
-                                
+                            //forma um vector contendo o conteudo da linha    
                             atributos.push_back(palavra);
                             }
                         }
-                        catch(ios_base::failure &fail){
-                            cout << "Failure" << endl;
-                        }
-                        catch(std::invalid_argument){
+                        catch(std::invalid_argument){   //Pega o erro derivado da função stoi()
                             cout << "Invalid argument" << endl;
                         }
                     }
                     
                     try{
                         Insumo *generico;
+                        //Esse switch inicializa o ponteiro "generico" com o tipo de insumo dependendo linha
                         switch(std::stoi(atributos[0])){ // Verifica a coluna do tipo
                             case VACINA:
                             {
@@ -94,7 +93,8 @@ void StorageManager::lerInsumos(Controler &ct)
                             }
                         }
                         
-                        ct.getLocal(local).setInsumo(generico);
+                        //Cadastra o insumo da linha no local da linha
+                        ct.getLocal(local).setInsumo(generico); 
                     }
                     catch(std::exception){
                         cout << " Ocorreu um erro " << endl;
@@ -117,12 +117,13 @@ void StorageManager::lerInsumos(Controler &ct)
 
 void StorageManager::salvarInsumos(Controler &ct)
 {   
-
+    
     ofstream file;
-    file.open("Estoque.csv", fstream::out);
+    file.open("Estoque.csv", fstream::out); //abre o arquirvo para a escrita 
     if(file.is_open()){
-        for(int x = 0; x < 28 ; x++){
-            if(ct.getLocal(x).getInsumos().size() > 0){
+        for(int x = 0; x < 28 ; x++){ //percorre os locais um por um
+            if(ct.getLocal(x).getInsumos().size() > 0){ //Se o vector de insumos do local tiver algum insumo faça:
+                //Percorre o vector de insumos escrevendo cada insumo no arquivo
                 for(int i = 0; i < ct.getLocal(x).getInsumos().size(); i++){
                     file << ct.getLocal(x).getIndex() << ",";
                     file << ct.getLocal(x).getInsumos()[i]->getTipoInsumo() << ",";
@@ -132,6 +133,7 @@ void StorageManager::salvarInsumos(Controler &ct)
                     file << ct.getLocal(x).getInsumos()[i]->getDtVencimento() << ",";
                     file << ct.getLocal(x).getInsumos()[i]->getNomeFabricante() << ",";
                     
+                    //Parte personalizada dos atributos de acordo com o tipo de insumo
                     ct.getLocal(x).getInsumos()[i]->salvaAtributos(file);
                 }
             
