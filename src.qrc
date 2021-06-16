@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/src">
+        <file>src/white.png</file>
+        <file>src/ministerio.png</file>
+        <file>src/sus.jpg</file>
+        <file>src/gov.ico</file>
+    </qresource>
+</RCC>
