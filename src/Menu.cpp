@@ -26,7 +26,7 @@ int Menu::exibeMenuPrincipal(Controler &ct, StorageManager &st){
         cin.ignore();
         fflush(stdin);//limpar buffer do teclado 
 
-        system("CLS");//limpa o terminal
+        system("clear");//limpa o terminal
         
         //switch para selecionar a opção desejada 
         switch (opcao){
@@ -70,7 +70,7 @@ int Menu::exibeMenu1(Controler &ct, StorageManager &st){
     cin >> opcao;
     cin.ignore();
     fflush(stdin);
-    system("CLS");
+    system("clear");
     //switch para a seleção de determinada função, escolhida pelo usuario 
     switch (opcao){
         case '1':
@@ -127,7 +127,7 @@ void Menu::cadastroDeInsumo(Controler &ct){
 	std::string descricao;
 
 
-    system("CLS");
+    system("clear");
     //tela de interação do usuário, relacionada ao cadastro de insumo
     cout << "Qual o tipo de insumo? " << endl;
     
@@ -138,7 +138,7 @@ void Menu::cadastroDeInsumo(Controler &ct){
     cin >> tipoInsumo;
     cin.ignore();
 
-    system("CLS");
+    system("clear");
 
     //Tratamento de erros
     if(tipoInsumo != 1 && tipoInsumo != 2 && tipoInsumo != 3){
@@ -159,7 +159,7 @@ void Menu::cadastroDeInsumo(Controler &ct){
     getline(cin, dtVencimento);
     cout << "Digite o nome do fabricante desse insumo:" << endl;
     getline(cin, nomeFabricante);
-   
+    system("clear");
     //Switch para os tipos de insumo
     switch(tipoInsumo){
 
@@ -218,11 +218,12 @@ void Menu::cadastroDeInsumo(Controler &ct){
     cout << "Tem certeza que deseja cadastrar esse insumo? s/n" << endl;
     cin >> resposta;
     cin.ignore();
+    system("clear");
     //condição para cadastro
     if(resposta == 's' || resposta == 'S'){
         ct.cadastraInsumosMS(insumo);
     }else if(resposta == 'n' || resposta == 'N'){
-        system("CLS");
+        system("clear");
         cout << "Cadastramento cancelado." << endl << endl;
         return;
     }
@@ -233,7 +234,7 @@ void Menu::consultaEstoqueLocal(Controler &ct){
 
     while(1){
         try{
-            system("CLS");
+            system("clear");
 
             string s;
             int indexLocal;
@@ -252,7 +253,7 @@ void Menu::consultaEstoqueLocal(Controler &ct){
             
             cin >> s;
             //tratamento de erro 
-            //transformação de string para inteiro 
+            //transformação de string para inteiro e verifica se tem apenas numeros 
             char *end;
             long i = strtol( s.c_str(), &end, 10 );
             if ( *end == '\0' )
@@ -262,12 +263,12 @@ void Menu::consultaEstoqueLocal(Controler &ct){
                     throw "Local nao encontrado";
                 }
             }
-            else
+            else //para caso o usuario escreva uma letra, ao inves de apenas numeros
             {
                 cout << "Digite um local valido" << endl;
                 return;
             }
-            system("CLS");
+            system("clear");
             //consultaro os insumos de acordo com o local passado como index
             ct.consultaInsumos(ct.getLocal(indexLocal));
         }
@@ -285,7 +286,7 @@ void Menu::consultaEstoqueLocal(Controler &ct){
         if(resposta == 's' || resposta == 'S'){
             continue;
         }else if(resposta == 'n' || resposta == 'N'){
-            system("CLS");
+            system("clear");
             break;
         }     
     } 
@@ -296,7 +297,7 @@ void Menu::consultaEstoqueDescricao(Controler &ct){
 
     while(1){
        try{
-            system("CLS");
+            system("clear");
 
             string s;   //string que recebe a entrada do usuário
             int indexLocal;
@@ -330,10 +331,10 @@ void Menu::consultaEstoqueDescricao(Controler &ct){
             }
             else
             {
-                cout << "Digite um local válido" << endl;
+                cout << "Digite um local valido" << endl;
                 return;
             }
-            system("CLS");
+            system("clear");
             
             ct.consultaInsumosDescricao(ct.getLocal(indexLocal)); //Chama a função de consulta
         }
@@ -347,11 +348,11 @@ void Menu::consultaEstoqueDescricao(Controler &ct){
         cout << "Queres continuar a consultar? s/n" << endl;
         cin >> resposta;
         cin.ignore();
-        
+        system("clear");
         if(resposta == 's' || resposta == 'S'){
             continue;
         }else if(resposta == 'n' || resposta == 'N'){
-            system("CLS");
+            system("clear");
             break;
         }     
     } 
@@ -364,7 +365,7 @@ void Menu::consultaInsumosTipo(Controler &ct){
     
     while(1){
         try{
-            system("CLS");
+            system("clear");
             
             string s;       //string que recebe a entrada do usuário
             int local;
@@ -403,7 +404,7 @@ void Menu::consultaInsumosTipo(Controler &ct){
                 return;
             }
 
-            system("CLS");
+            system("clear");
             //interaçao para saber o tipo de insumo desjado para consulta 
             cout << "Digite o tipo do insumo desejado: " << endl;
             cout << "[1] -> Vacina" << endl;
@@ -441,7 +442,7 @@ void Menu::consultaInsumosTipo(Controler &ct){
         if(resposta == 's' || resposta == 'S'){
             continue;
         }else if(resposta == 'n' || resposta == 'N'){
-            system("CLS");
+            system("clear");
             break;
         }     
     }  
@@ -487,7 +488,7 @@ void Menu::distribuicao(Controler &ct){
                 //Se digitou apenas números, transforma em inteiro e verifica se é um destino valido
                 destino = stoi(s);
                 if(destino < 0  || destino > 27){
-                    system("CLS");
+                    system("clear");
                     throw "Local nao encontrado";
                 }
             }
@@ -515,7 +516,7 @@ void Menu::distribuicao(Controler &ct){
         cout << "Queres continuar a distribuir? s/n" << endl;
         cin >> resposta;
         cin.ignore();
-        
+        system("clear");
         if(resposta == 's' || resposta == 'S'){
             continue;
         }else if(resposta == 'n' || resposta == 'N'){
