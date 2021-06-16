@@ -117,7 +117,9 @@ void StorageManager::lerInsumos(Controler &ct)
 
 void StorageManager::salvarInsumos(Controler &ct)
 {   
-    
+    for(int i = 0 ; i < 28; i++){
+        ct.delecaoDeInsumo(ct.getLocal(i));
+    }
     ofstream file;
     file.open("Estoque.csv", fstream::out); //abre o arquirvo para a escrita 
     if(file.is_open()){
