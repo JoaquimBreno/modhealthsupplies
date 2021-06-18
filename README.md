@@ -21,8 +21,30 @@ Clone the project in branch master:
 git clone --branch master https://github.com/JoaquimBreno/modhealthsupplies.git
 ```
 
-In case you have GCC/G++ and make Unix tool, run command:
+In case you have GCC/G++ Compilator and make Unix tool, run command:
 
 ```
 make
 ```
+Otherwise, run:
+
+```
+g++ src/main.cpp src/Menu.cpp src/StorageManager.cpp src/Controler.cpp src/Locais.cpp src/Insumo.cpp src/Vacina.cpp src/Medicamento.cpp src/Epi.cpp -o main
+```
+
+Or only execute `main.exe`
+
+## 4. How to execute the system UI for Windows 7/8/10 x64:
+
+Clone the project in branch qtspace:
+
+```
+git clone --branch qtspace https://github.com/JoaquimBreno/modhealthsupplies.git
+```
+
+Run:
+
+```
+modhealthsupplies.exe
+```
+
